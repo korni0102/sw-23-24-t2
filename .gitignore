@@ -1,30 +1,30 @@
-/vendor
-/node_modules
+/src/vendor
+/src/node_modules
 
-/public/hot
-/public/storage
-/storage/*.key
-/storage/debugbar/
-/storage/logs/
-/storage/framework/cache/
-/storage/framework/sessions/
-/storage/framework/testing/
-/storage/framework/views/
+/src/public/hot
+/src/public/storage
+/src/storage/*.key
+/src/storage/debugbar/
+/src/storage/logs/
+/src/storage/framework/cache/
+/src/storage/framework/sessions/
+/src/storage/framework/testing/
+/src/storage/framework/views/
 
-/bootstrap/cache/
+/src/bootstrap/cache/
 
-.env
-.env.backup
-.env.local
-.env.testing
+/src/.env
+/src/.env.backup
+/src/.env.local
+/src/.env.testing
 
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 Vagrantfile
 
-/.idea
-/.vscode
+.idea
+.vscode
 
 /_ide_helper.php
 /_ide_helper_models.php
