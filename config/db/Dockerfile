@@ -14,5 +14,5 @@ RUN { \
         echo 'password = docker'; \
         echo 'host = localhost'; \
     } > /root/.mylogin.cnf && \
-    chmod 600 /root/.mylogin.cnf
+    chmod 777 /root/.mylogin.cnf
 

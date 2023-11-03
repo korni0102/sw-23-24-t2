@@ -53,6 +53,21 @@ services:
     networks:
       - halvonik-api
 
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_PORT=3306
+      - PMA_HOST=db
+      - UPLOAD_LIMIT=3000M
+    depends_on:
+      - db
+    networks:
+      - halvonik-api
+
+
 volumes:
   dev_db:
     driver: local
