@@ -13,15 +13,10 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->text('text')->nullable(false); // Use text instead of varchar to match VARCHAR(300)
-            $table->unsignedBigInteger('contracts_id');
-
-            //added later
-            /*$table->foreign('contracts_id')->references('id')->on('contracts')
-                ->onDelete('no action')
-                ->onUpdate('no action');*/
-
-            // Add timestamps if you wish to track when feedbacks are created or updated
+            $table->text('text');
+            $table->unsignedBigInteger('contract_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('contact_id')->nullable();
             $table->timestamps();
         });
     }

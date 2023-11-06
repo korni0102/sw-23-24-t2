@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 45);
             $table->string('address', 45);
-
-            // If you want to keep track of when companies are created or updated:
             $table->timestamps();
         });
     }

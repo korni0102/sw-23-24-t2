@@ -15,14 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('firstname', 45);
             $table->string('lastname', 45);
-            $table->string('tel', 45);
+            $table->string('tel', 45)->nullable();
             $table->string('email', 45);
-            $table->unsignedBigInteger('companies_id');
-
-            /*$table->foreign('companies_id')->references('id')->on('companies')
-                ->onDelete('no action')
-                ->onUpdate('no action');*/
-
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->timestamps();
         });
     }

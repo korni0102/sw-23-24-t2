@@ -14,13 +14,6 @@ return new class extends Migration
         Schema::create('study_programs', function (Blueprint $table) {
             $table->id();
             $table->string('name', 45);
-            $table->unsignedBigInteger('users_id')->nullable();
-            //added later
-            /*$table->foreign('users_id')->references('id')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');*/
-
-            // If you want to keep track of when study programs are created or updated:
             $table->timestamps();
         });
     }

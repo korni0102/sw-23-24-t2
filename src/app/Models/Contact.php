@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Contact extends Model
 {
@@ -14,11 +15,11 @@ class Contact extends Model
         'lastname',
         'tel',
         'email',
-        'companies_id'
+        'company_id'
     ];
 
-    public function company()
+    public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class, 'companies_id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

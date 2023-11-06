@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id'); // Use unsignedBigInteger for foreign keys.
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('contact_id');
             $table->date('from');
             $table->date('to');
-            $table->tinyInteger('accepted')->nullable();
-            $table->tinyInteger('closed')->nullable();
+            $table->tinyInteger('accepted')->default(false);
+            $table->tinyInteger('closed')->default(false);
 
-            $table->timestamps(); // Optional: if you want to track created and updated times
+            $table->timestamps();
         });
     }
 
