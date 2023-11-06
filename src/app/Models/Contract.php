@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Contract extends Model
 {
     protected $fillable = [
+        'id',
         'user_id',
         'contact_id',
         'from',

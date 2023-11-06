@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login.page');
+
+Route::match(['get', 'post'], '/loginAction', [LoginController::class, 'login'])->name('login.login');
+
+Route::get('/main', [UserController::class,'index'])->name('user.index');
+

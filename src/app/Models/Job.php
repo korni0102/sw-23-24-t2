@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Job extends Model
 {
     protected $fillable = [
+        'id',
         'company_id',
         'contract_id',
         'description'
