@@ -18,19 +18,9 @@ return new class extends Migration
             $table->string('email', 45)->unique();
             $table->string('password', 45);
             $table->string('tel', 45)->nullable();
-            $table->unsignedBigInteger('roles_id');
-            $table->unsignedBigInteger('feedback_id');
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('study_program_id')->nullable();
             $table->date('year');
-
-            //added later
-            /*$table->foreign('roles_id')->references('id')->on('roles')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-            $table->foreign('feedback_id')->references('id')->on('feedbacks')
-                ->onDelete('no action')
-                ->onUpdate('no action');*/
-
-            $table->engine = 'InnoDB';
         });
     }
 
