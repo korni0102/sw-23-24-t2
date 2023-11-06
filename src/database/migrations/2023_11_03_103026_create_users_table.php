@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('firstname', 45);
             $table->string('lastname', 45);
             $table->string('email', 45)->unique();
-            $table->string('password', 45);
+            $table->string('password', 255);
             $table->string('tel', 45)->nullable();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('study_program_id')->nullable();
-            $table->date('year');
+            $table->integer('year');
+            $table->timestamps();
         });
     }
 
