@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.page');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+
+Route::post('/register', 'RegisterController@register');
+
+
 
 Route::match(['get', 'post'], '/loginAction', [LoginController::class, 'login'])->name('login.login');
 

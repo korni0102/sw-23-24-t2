@@ -23,6 +23,6 @@ class LoginController extends Controller
 
     public function logout(){
         auth()->logout();
-        return view('login.page');
+        return view('login.login');
     }
 }
