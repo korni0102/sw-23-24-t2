@@ -30,3 +30,7 @@ Route::match(['get', 'post'], '/loginAction', [LoginController::class, 'login'])
 
 Route::get('/main', [UserController::class,'index'])->name('user.index');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

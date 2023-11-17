@@ -40,12 +40,13 @@
       <form class="d-flex" role="search">
         <a class="user" style="text-decoration: none " href="#">
       <div style = "padding-right: 30px ">
-      <?php (auth()->user()) ?>
+    <?php (auth()->user()) ?>
       <?= auth()->user()->lastname?>
       </a>
       </div>
       </form>
       <a class="btn btn-secondary" href="/logout"><i class="bi bi-box-arrow-right"></i> Odhlásenie</a>
+  
     </div>
   </div>
 </nav>
