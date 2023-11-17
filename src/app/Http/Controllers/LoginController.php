@@ -13,12 +13,12 @@ class LoginController extends Controller
 
     public function login(\App\Http\Requests\Login $request){
         $data = $request->validated();
-        
-        if (auth()->attempt($data)) {   
+
+        if (auth()->attempt($data)) {
             return redirect()->route('user.index');
         }
 
-        return redirect()->route('login.page')->with('error', 'Helytelen jelszó/e-mail!');
+        return redirect()->route('login.page')->with('error', 'Zadali ste nesprávne údaje!');
     }
 
     public function logout(){
