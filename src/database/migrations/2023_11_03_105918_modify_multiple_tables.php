@@ -56,6 +56,18 @@ return new class extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
+
+        Schema::table('role_requests', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('role_id')->references('id')->on('roles')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('admin_id')->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+        });
     }
         /**
          * Reverse the migrations.
@@ -103,6 +115,14 @@ return new class extends Migration
             });
 
             Schema::dropIfExists('contracts');
+
+            Schema::table('role_requests', function (Blueprint $table) {
+                $table->dropForeign(['user_id']);
+                $table->dropForeign(['role_id']);
+                $table->dropForeign(['admin_id']);
+            });
+
+            Schema::dropIfExists('role_requests');
 
         }
     };
