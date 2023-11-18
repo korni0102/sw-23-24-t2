@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>UKF FPVAI PRAX</title>
     <link href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -21,8 +22,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+                @if(auth()->user()->role_id==1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Role requests</a>
+                    </li>
+                @endif
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -45,14 +51,14 @@
             <form class="d-flex" role="search">
                 <a class="user" style="text-decoration: none " href="#">
                     <div style="padding-right: 30px ">
-                    <?php (auth()->user()) ?>
+                        <?php (auth()->user()) ?>
                         {{auth()->user()->lastname}}
                     </div>
                 </a>
 
-        </form>
-        <a class="btn btn-secondary" href="/logout"><i class="bi bi-box-arrow-right"></i> Odhlásenie</a>
-    </div>
+            </form>
+            <a class="btn btn-secondary" href="/logout"><i class="bi bi-box-arrow-right"></i> Odhlásenie</a>
+        </div>
     </div>
 </nav>
 @yield('body')

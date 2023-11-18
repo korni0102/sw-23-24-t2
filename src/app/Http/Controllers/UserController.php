@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -13,6 +14,12 @@ class UserController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
+
+        $token = RoleRequest::where('user_id', auth()->user()->id)->first()->accepted;
+
+        if(!$token){
+            return redirect()->route('login.logout')->with('error', 'Musíte čakať na admina!');
+        }
 
         return view('welcome',compact('user'));
     }
@@ -51,6 +58,11 @@ class UserController extends Controller
             'study_program_id' => $validatedData['study_program_id'],
         ]);
 
-        return redirect()->route('login.page')->with("success", 'Registrácia prebiehla úspešne!');
+        RoleRequest::create([
+            'user_id' => $user->id,
+            'role_id' => $validatedData['role_id'],
+        ]);
+
+        return redirect()->route('login.page')->with("success", 'Registrácia prebiehla úspešne, musíte čakať na admina!');
     }
 }
