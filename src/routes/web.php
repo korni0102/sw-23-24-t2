@@ -4,6 +4,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ Route::get('/register', [UserController::class, 'registerUser'])->name('register
 
 Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user');
 
+Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies');
 
 
 Route::match(['get', 'post'], '/loginAction', [LoginController::class, 'login'])->name('login.login');
