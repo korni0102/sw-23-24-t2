@@ -12,9 +12,9 @@
 </head>
 <body class="bg-dark">
     <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="card" style="width: 20rem;">
-            <img src="{{ asset('images/logo.jpg') }}" class="card-img-top mx-auto my-auto" alt="Logo">
-            <div class="card-body">
+        <div class="card" style="width: 100%;">
+            <img src="{{ asset('images/logo.jpg') }}" style="height: 250px; width: auto; padding: 5px" class="card-img-top mx-auto my-auto" alt="Logo">
+                <div class="card-body">
                 <h5 class="card-title">Registrácia</h5>
                 <form action="{{ route('save.user') }}" method="post">
                     @csrf

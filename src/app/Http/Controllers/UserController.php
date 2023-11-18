@@ -30,8 +30,8 @@ class UserController extends Controller
     {
 
         $validatedData = $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
+            'firstname' => 'required|string|max:45',
+            'lastname' => 'required|string|max:45',
             'year' => 'required|int',
             'email' => 'required|string|email|max:255|unique:users',
             'tel' => 'required|string|max:255',
@@ -51,6 +51,6 @@ class UserController extends Controller
             'study_program_id' => $validatedData['study_program_id'],
         ]);
 
-        return redirect()->route('login.page');
+        return redirect()->route('login.page')->with("success", 'Registrácia prebiehla úspešne!');
     }
 }
