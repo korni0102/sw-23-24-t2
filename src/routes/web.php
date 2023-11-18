@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RegisterController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index'])->name('login.page');
+Route::get('/', [LoginController::class, 'index'])->name('login.page');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register', [UserController::class, 'registerUser'])->name('register.user');
 
-Route::post('/register', 'RegisterController@register');
+Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user');
 
 
 
