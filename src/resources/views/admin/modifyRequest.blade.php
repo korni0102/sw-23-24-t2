@@ -44,13 +44,12 @@
                 </td>
                 <td style="font-size: 30px!important;">{!! $request->accepted ? '<i class="bi bi-toggle-on"></i>' : '<i class="bi bi-toggle-off"></i>' !!}</td>
                 <td>
-                    @if(!\PHPUnit\Framework\isNull($request->admin))
-                        {{ $request->admin->firstname
-                            . " " .
-                            $request->admin->lastname}}
-                    @else
-                        Neni admin
-                    @endif
+                @if(!is_null($request->admin))
+                    {{ $request->admin->firstname . " " . $request->admin->lastname }}
+                @else
+                    Neni admin
+                @endif
+
                 </td>
                 <td>
                     <form method="post"
