@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JobController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
@@ -30,6 +31,7 @@ Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user')
 
 //vypis
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies');
+Route::get('/jobs', [JobController::class, 'showJobs'])->name('jobs');
 
 //rolerequest
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');
