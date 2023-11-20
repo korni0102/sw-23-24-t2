@@ -59,13 +59,13 @@
                     <br>
                     <div class="form-group">
                         <li class="list-group-item">
-                            <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="role_id" name="role_id" required>
+                        <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="role_id" name="role_id" required>
                                 <option value="" disabled selected hidden>Role</option>
                                 <option value="1">Admin</option>
                                 <option value="2">Študent</option>
                                 <option value="3">Poverený pracovník pracoviska</option>
-                                <option value="4">Ceo</option>
-                                <option value="5">Manažér</option>
+                                <option value="4">Vedúci pracoviska</option>
+                                <option value="5">Zástupca firmy alebo organizácie</option>
                             </select>
                         </li>
                     </div>
