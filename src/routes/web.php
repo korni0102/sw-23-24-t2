@@ -36,3 +36,8 @@ Route::get('/jobs', [JobController::class, 'showJobs'])->name('jobs');
 //rolerequest
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');
 Route::post('/request/changeStatus/{role_request_id}/{role_request_status}', [AdminController::class, 'asd'])->name('admin.changeRequestStatus');
+
+//addCompany
+Route::get('/addCompany', [CompanyController::class, 'addCompany'])->name('addCompany');
+Route::post('/saveCompany', [CompanyController::class, 'saveCompany'])->name('saveCompany');
+
