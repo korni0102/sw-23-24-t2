@@ -49,7 +49,7 @@
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <a class="user" style="text-decoration: none " href="#">
+                <a class="user" style="text-decoration: none " href="{{ route('profile.edit') }}">
                     <div style="padding-right: 30px ">
                         <?php (auth()->user()) ?>
                         {{auth()->user()->lastname}}

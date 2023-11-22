@@ -65,4 +65,12 @@ class UserController extends Controller
 
         return redirect()->route('login.page')->with("success", 'Registrácia prebiehla úspešne, musíte čakať na admina!');
     }
+
+    public function ShowUser()
+    {
+        $usersWithPosts = User::with('posts')->get();
+
+        return view('user_view', ['usersWithPosts' => $usersWithPosts]);
+    }
+
 }
