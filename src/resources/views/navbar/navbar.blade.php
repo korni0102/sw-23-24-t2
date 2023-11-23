@@ -25,7 +25,7 @@
                         <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Role requests</a>
                     </li>
                 @endif
-                @if(auth()->user()->role_id==1)
+                @if(auth()->user()->role_id==1 || auth()->user()->role_id == 2)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                     </li>

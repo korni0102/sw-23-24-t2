@@ -2,7 +2,11 @@
 
 @section('body')
 @if (auth()->user())
+<form action="{{ route('addCompany') }}" method="get">
+    @csrf
 
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
     <table class="table">
         <thead>
         <tr>
