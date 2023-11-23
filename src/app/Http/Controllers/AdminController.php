@@ -14,7 +14,7 @@ class AdminController extends Controller
         return view('admin.modifyRequest', compact('requests'));
     }
 
-    public function asd($role_request_id, $role_request_status){
+    public function changeStatus($role_request_id, $role_request_status){
         RoleRequest::where('id', $role_request_id)
             ->update([
                 'accepted' => !$role_request_status,
