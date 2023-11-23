@@ -11,12 +11,12 @@
                         @if($user)
                             <form>
                                 <div class="mb-3">
-                                    <label for="firstname" class="form-label">First Name:</label>
+                                    <label for="firstname" class="form-label">Krstne meno:</label>
                                     <input type="text" class="form-control" id="firstname" value="{{ $user->firstname }}" readonly>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="lastname" class="form-label">Last Name:</label>
+                                    <label for="lastname" class="form-label">Priezvisko:</label>
                                     <input type="text" class="form-control" id="lastname" value="{{ $user->lastname }}" readonly>
                                 </div>
 
@@ -26,7 +26,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="year" class="form-label">Year:</label>
+                                    <label for="year" class="form-label">Rok:</label>
                                     <input type="text" class="form-control" id="year" value="{{ $user->year }}" readonly>
                                 </div>
 
