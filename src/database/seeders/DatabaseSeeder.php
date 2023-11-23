@@ -4,11 +4,15 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Company;
+use App\Models\Job;
 use App\Models\Role;
 use App\Models\RoleRequest;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\StudyProgram;
+use App\Models\Contact;
+use App\Models\Contract;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -119,6 +123,55 @@ class DatabaseSeeder extends Seeder
             'role_id' => '1',
             'accepted' => true
         ]);
+
+        //contact ------------------------------
+        $contact = new Contact();
+        $contact->firstname = "Jozo";
+        $contact->lastname = "Mrkvicka";
+        $contact->tel = "0918181818";
+        $contact->email = "jozomrkvicka@gmail.com";
+        $contact->company_id = 2;
+        $contact->save();
+
+        $contact = new Contact();
+        $contact->firstname = "Jano";
+        $contact->lastname = "Kapusta";
+        $contact->tel = "0905151515";
+        $contact->email = "janokapusta@gmail.com";
+        $contact->company_id = 4;
+        $contact->save();
+
+        //contract -----------------------------
+        $contract = new Contract();
+        $contract->user_id = 1;
+        $contract->contact_id = 1;
+        $contract->from = '2023-11-01';
+        $contract->to = '2022-11-30';
+        $contract->accepted = true;
+        $contract->closed = false;
+        $contract->save();
+
+        $contract = new Contract();
+        $contract->user_id = 2;
+        $contract->contact_id = 2;
+        $contract->from = '2023-11-10';
+        $contract->to = '2022-12-10';
+        $contract->accepted = true;
+        $contract->closed = false;
+        $contract->save();
+
+        //job ---------------------------------
+        $job = new Job();
+        $job->company_id = 1;
+        $job->contract_id = 1;
+        $job->description = 'Programovanie v jazyku PHP';
+        $job->save();
+
+        $job = new Job();
+        $job->company_id = 2;
+        $job->contract_id = 2;
+        $job->description = 'Programovanie v jazyku Java';
+        $job->save();
 
         // \App\Models\User::factory(10)->create();
 
