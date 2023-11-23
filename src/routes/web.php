@@ -7,6 +7,7 @@ use App\Http\Controllers\JobController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -32,6 +33,13 @@ Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user')
 //vypis
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies');
 Route::get('/jobs', [JobController::class, 'showJobs'])->name('jobs');
+
+//User_Info
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
+
 
 //rolerequest
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');
