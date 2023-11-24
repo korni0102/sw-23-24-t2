@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->text('text');
-            $table->unsignedBigInteger('contract_id');
+            $table->text('text')->nullable();
+            $table->unsignedBigInteger('contract_id')->default(1);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('contact_id')->nullable();
             $table->timestamps();
