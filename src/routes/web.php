@@ -22,6 +22,7 @@ use App\Http\Controllers\ProfileController;
 */
 //prihlasenie↓
 Route::get('/', [LoginController::class, 'index'])->name('login.page');
+//FSDSDDDD
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 Route::match(['get', 'post'], '/loginAction', [LoginController::class, 'login'])->name('login.login');
 Route::get('/main', [UserController::class,'index'])->name('user.index');
