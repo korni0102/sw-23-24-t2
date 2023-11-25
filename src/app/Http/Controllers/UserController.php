@@ -73,4 +73,9 @@ class UserController extends Controller
         return view('user_view', ['usersWithPosts' => $usersWithPosts]);
     }
 
+    public function showStudentforVeduci (){
+        $users = User::where('role_id', 2)->get();
+        return view('studentiView', ['users' => $users]);
+    }
+
 }

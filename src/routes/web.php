@@ -49,9 +49,11 @@ Route::post('/request/changeStatus/{role_request_id}/{role_request_status}', [Ad
 Route::get('/addCompany', [CompanyController::class, 'addCompany'])->name('addCompany');
 Route::post('/saveCompany', [CompanyController::class, 'saveCompany'])->name('saveCompany');
 
+
 Route::get('/showStudents', [AdminController::class, 'showStudents'])->name('showStudents');
 Route::get('/showPPPs', [AdminController::class, 'showPPPs'])->name('showPPPs');
 Route::get('/showVeducis', [AdminController::class, 'showVeducis'])->name('showVeducis');
 Route::get('/showzastupcas', [AdminController::class, 'showzastupcas'])->name('showzastupcas');
 
+Route::get('/showStudentsVeduci', [UserController::class, 'showStudentforVeduci'])->name('showStudentsVeduci');
 

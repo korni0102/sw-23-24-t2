@@ -25,7 +25,7 @@
                         <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Role requests</a>
                     </li>
                 @endif
-                @if(auth()->user()->role_id==1 || auth()->user()->role_id == 2)
+                @if(auth()->user()->role_id==1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 4)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                     </li>
@@ -46,6 +46,12 @@
                         <a class="dropdown-item" href="{{ route('showVeducis') }}">Veduci pracoviska</a>
                         <a class="dropdown-item" href="{{ route('showzastupcas') }}">Zastupca firmy</a>
                         </div>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id==4)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showStudentsVeduci')}}">Studenti</a>
                     </li>
                 @endif
             </ul>

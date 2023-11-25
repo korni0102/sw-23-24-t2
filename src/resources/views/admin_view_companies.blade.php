@@ -4,8 +4,12 @@
 @if (auth()->user())
 <form action="{{ route('addCompany') }}" method="get">
     @csrf
+    @if(auth()->user()->role_id==1)
+        <li class="nav-item">
+            <button type="submit" class="btn btn-primary">Pridať firmu</button>
+        </li>
+    @endif
 
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
     <table class="table">
         <thead>
