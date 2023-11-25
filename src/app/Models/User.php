@@ -59,4 +59,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(StudyProgram::class, 'study_program_id');
     }
+
+    // User.php (User model)
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }   
+
 }

@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('study_programs', function (Blueprint $table) {
+        Schema::create('role_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 150);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('role_id');
+            $table->boolean('accepted')->default(false);
+            $table->unsignedBigInteger('admin_id')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('study_programs');
+        Schema::dropIfExists('role_requests');
     }
 };
