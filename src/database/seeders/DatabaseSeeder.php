@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
 
         RoleRequest::create([
             'user_id' => $user->id,
-            'role_id' => '1',
+            'role_id' => '2',
             'accepted' => true
         ]);
 
@@ -172,6 +172,60 @@ class DatabaseSeeder extends Seeder
         $job->contract_id = 2;
         $job->description = 'Programovanie v jazyku Java';
         $job->save();
+
+        // users -------------------------------
+        $user = new User();
+        $user->firstname = "Jano";
+        $user->lastname = "Kiss";
+        $user->email = "ppp@ppp.com";
+        $user->tel = "888888528";
+        $user->year = "2023";
+        $user->role_id = "3";
+        $user->study_program_id = "3";
+        $user->password = bcrypt("adminadmin");
+        $user->save();
+
+        RoleRequest::create([
+            'user_id' => $user->id,
+            'role_id' => '3',
+            'accepted' => true
+        ]);
+
+        // users -------------------------------
+        $user = new User();
+        $user->firstname = "Fero";
+        $user->lastname = "Nagy";
+        $user->email = "veduci@veduci.com";
+        $user->tel = "088888528";
+        $user->year = "2023";
+        $user->role_id = "4";
+        $user->study_program_id = "3";
+        $user->password = bcrypt("adminadmin");
+        $user->save();
+
+        RoleRequest::create([
+            'user_id' => $user->id,
+            'role_id' => '4',
+            'accepted' => true
+        ]);
+
+        // users -------------------------------
+        $user = new User();
+        $user->firstname = "Jancsi";
+        $user->lastname = "Velikansky";
+        $user->email = "zastupca@zastupca.com";
+        $user->tel = "0988888528";
+        $user->year = "2023";
+        $user->role_id = "5";
+        $user->study_program_id = "3";
+        $user->password = bcrypt("adminadmin");
+        $user->save();
+
+        RoleRequest::create([
+            'user_id' => $user->id,
+            'role_id' => '5',
+            'accepted' => true
+        ]);
 
         // \App\Models\User::factory(10)->create();
 

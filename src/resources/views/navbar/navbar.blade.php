@@ -25,7 +25,7 @@
                         <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Role requests</a>
                     </li>
                 @endif
-                @if(auth()->user()->role_id==1 || auth()->user()->role_id == 2)
+                @if(auth()->user()->role_id==1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 4)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                     </li>
@@ -33,6 +33,11 @@
                 @if(auth()->user()->role_id==2 || auth()->user()->role_id == 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('jobs')}}">Jobs</a>
+                    </li>
+                @endif
+                @if(auth()->user()->role_id==4)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showStudentsVeduci')}}">Studenti</a>
                     </li>
                 @endif
 
