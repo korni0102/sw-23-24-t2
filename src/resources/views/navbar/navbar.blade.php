@@ -35,12 +35,25 @@
                         <a class="nav-link" href="{{ route('jobs')}}">Jobs</a>
                     </li>
                 @endif
+                @if(auth()->user()->role_id == 1)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pouzivatelia
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('showStudents') }}">Student</a>
+                        <a class="dropdown-item" href="{{ route('showPPPs') }}">Povereny pracovnik pracoviska</a>
+                        <a class="dropdown-item" href="{{ route('showVeducis') }}">Veduci pracoviska</a>
+                        <a class="dropdown-item" href="{{ route('showzastupcas') }}">Zastupca firmy</a>
+                        </div>
+                    </li>
+                @endif
+
                 @if(auth()->user()->role_id==4)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showStudentsVeduci')}}">Studenti</a>
                     </li>
                 @endif
-
             </ul>
             <form class="d-flex" role="search">
                 <a class="user" style="text-decoration: none " href="{{ route('profile.edit') }}">
@@ -64,5 +77,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
