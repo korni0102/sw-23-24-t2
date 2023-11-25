@@ -30,4 +30,20 @@ class AdminController extends Controller
 
         return view('admin_views.admin_view_students', ['users' => $users]);
     }
+    public function showPPPs(){
+        $users = User::where('role_id', 3)->get();
+
+        return view('admin_views.admin_view_PPPs', ['users' => $users]);
+    }
+    public function showVeducis(){
+        $users = User::where('role_id', 4)->get();
+
+        return view('admin_views.admin_view_Veducis', ['users' => $users]);
+    }
+    public function showzastupcas(){
+        $users = User::where('role_id', 5)->get();
+
+        return view('admin_views.admin_view_PPPs', ['users' => $users]);
+    }
+   
 }

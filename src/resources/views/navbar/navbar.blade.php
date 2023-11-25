@@ -42,9 +42,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('showStudents') }}">Student</a>
-                        <a class="dropdown-item" href="#">Povereny pracovnik pracoviska</a>
-                        <a class="dropdown-item" href="#">Veduci pracoviska</a>
-                        <a class="dropdown-item" href="#">Zastupca firmy</a>
+                        <a class="dropdown-item" href="{{ route('showPPPs') }}">Povereny pracovnik pracoviska</a>
+                        <a class="dropdown-item" href="{{ route('showVeducis') }}">Veduci pracoviska</a>
+                        <a class="dropdown-item" href="{{ route('showzastupcas') }}">Zastupca firmy</a>
                         </div>
                     </li>
                 @endif

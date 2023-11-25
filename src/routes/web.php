@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
 //rolerequest
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');
-Route::post('/request/changeStatus/{role_request_id}/{role_request_status}', [AdminController::class, 'asd'])->name('admin.changeRequestStatus');
+Route::post('/request/changeStatus/{role_request_id}/{role_request_status}', [AdminController::class, 'changeStatus'])->name('admin.changeRequestStatus');
 
 //addCompany
 Route::get('/addCompany', [CompanyController::class, 'addCompany'])->name('addCompany');
