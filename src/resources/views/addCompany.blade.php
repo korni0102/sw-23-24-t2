@@ -7,7 +7,7 @@
         <div class="card" style="width: 100%;">
             <img src="{{ asset('images/logo.jpg') }}" style="height: 250px; width: auto; padding: 5px" class="card-img-top mx-auto my-auto" alt="Logo">
                 <div class="card-body">
-                <h5 class="card-title">Pridaj Firmu</h5>
+                <h5 class="card-title">Pridajte Firmu</h5>
                 <form action="{{ route('saveCompany') }}" method="post">
                     @csrf
                     <h5 class="card-title">Nazov Firmy</h5>
