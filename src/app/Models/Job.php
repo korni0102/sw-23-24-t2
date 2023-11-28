@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Http\Controllers\JobController;
 
 class Job extends Model
 {
     protected $fillable = [
         'id',
+        'name',
         'company_id',
         'contract_id',
         'description'
@@ -23,5 +25,10 @@ class Job extends Model
     public function contract(): BelongsTo
     {
         return $this->belongsTo(Contract::class, 'contract_id');
+    }
+
+    public function companies()
+    {
+        return $this->hasMany(Company::class, 'id'); // Adjust the foreign key as needed
     }
 }

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 100);
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('contract_id');
-            $table->string('description', 100);
+            $table->string('description', 255);
             $table->timestamps();
         });
     }

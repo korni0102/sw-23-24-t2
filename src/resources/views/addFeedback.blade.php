@@ -19,7 +19,7 @@
 
                             <div class="mb-3">
                                 <label for="comment" class="form-label">Komentár:</label>
-                                <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                                <textarea class="form-control" id="text" name="text" rows="3" required></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Pridať spätnú väzbu</button>

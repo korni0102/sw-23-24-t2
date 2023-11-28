@@ -31,7 +31,7 @@ class CompanyController extends Controller
             'address' => $validatedData['address'],
         ]);
 
-        return redirect()->route('showCompanies')->with("success", 'Pridanie prebehlo úspešne!');
+        return redirect()->route('companies')->with("success", 'Pridanie prebehlo úspešne!');
     }
 
     // Method to show the form for adding feedback
@@ -46,17 +46,24 @@ class CompanyController extends Controller
     {
         $validatedData = $request->validate([
             'company_id' => 'required|exists:companies,id',
-            'comment' => 'required|string',
+            'text' => 'required|string',
             // Add other validation rules as needed
         ]);
 
         $feedback = Feedback::create([
             'company_id' => $validatedData['company_id'],
             'user_id' => auth()->user()->id,
-            'comment' => $validatedData['comment'],
+            'text' => $validatedData['text'],
             // Add other feedback fields as needed
         ]);
 
-        return redirect()->route('showCompanies')->with("success", 'Spätná väzba bola úspešne pridaná!');
+        return redirect()->route('companies')->with("success", 'Spätná väzba bola úspešne pridaná!');
+    }
+
+    public function show($id)
+    {
+        $company = Company::with('jobs')->findOrFail($id);
+
+        return view('company', compact('company'));
     }
 }

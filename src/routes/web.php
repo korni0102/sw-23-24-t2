@@ -52,6 +52,18 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+// Route to show job descriptions for a specific company
+Route::get('/company/{id}/jobs', [CompanyController::class, 'show'])->name('company.show');
+
+// Route to show jobs with company names
+Route::get('/jobs/{id}', [JobController::class, 'showJobDetails'])->name('jobs.showDetails');
+
+// Route to show the form for adding feedback
+Route::get('/company/{id}/feedback', [CompanyController::class, 'addFeedback'])->name('company.feedback');
+
+// Route to handle the form submission for adding feedback
+Route::post('/company/feedback', [CompanyController::class, 'saveFeedback'])->name('company.saveFeedback');
+
 
 //rolerequest
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');

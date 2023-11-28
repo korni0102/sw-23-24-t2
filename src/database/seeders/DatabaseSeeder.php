@@ -162,15 +162,17 @@ class DatabaseSeeder extends Seeder
 
         //job ---------------------------------
         $job = new Job();
+        $job->name = 'PHP Programator';
         $job->company_id = 1;
         $job->contract_id = 1;
         $job->description = 'Programovanie v jazyku PHP';
         $job->save();
 
         $job = new Job();
+        $job->name = "Java Programator";
         $job->company_id = 2;
         $job->contract_id = 2;
-        $job->description = 'Programovanie v jazyku Java';
+        $job->description = 'Programovanie v jazyku Java test test test testtest test test testtest test test testtest test test testtest test test testtest test test test';
         $job->save();
 
         // \App\Models\User::factory(10)->create();
