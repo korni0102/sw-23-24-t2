@@ -12,6 +12,7 @@ class Job extends Model
         'id',
         'company_id',
         'contract_id',
+        'contract_type',
         'description'
     ];
 

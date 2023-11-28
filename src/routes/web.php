@@ -10,6 +10,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,4 +57,12 @@ Route::get('/showVeducis', [AdminController::class, 'showVeducis'])->name('showV
 Route::get('/showzastupcas', [AdminController::class, 'showzastupcas'])->name('showzastupcas');
 
 Route::get('/showStudentsVeduci', [UserController::class, 'showStudentforVeduci'])->name('showStudentsVeduci');
+
+
+// show Jobs podla type ↓
+Route::get('/contract-types/part-time', [JobController::class, 'showPartTimeJobs'])->name('showPartTime');
+Route::get('/contract-types/paid', [JobController::class, 'showPaidJobs'])->name('showPaid');
+Route::get('/contract-types/unpaid', [JobController::class, 'showUnpaidJobs'])->name('showUnpaid');
+Route::get('/contract-types/full-time', [JobController::class, 'showFullTimeJobs'])->name('showFullTime');
+Route::get('/contract-types/freelancer', [JobController::class, 'showFreelancerJobs'])->name('showFreelancer');
 
