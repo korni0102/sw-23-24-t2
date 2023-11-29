@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('contract_id');
+            $table->string('job_type', 100);
             $table->string('description', 100);
             $table->timestamps();
         });
