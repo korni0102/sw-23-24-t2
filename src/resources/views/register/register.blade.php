@@ -42,6 +42,12 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <br>
+                    <h5 class="card-title">Adresa</h5>
+                    <input type="address" placeholder="Address" id="address" name="address" class="form-control" required>
+                    @error('address')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <br>
                     <h5 class="card-title">Tel</h5>
                     <input type="tel" placeholder="09123456" id="tel" name="tel" class="form-control" required>
                     @error('tel')

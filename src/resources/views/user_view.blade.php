@@ -26,6 +26,11 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="address" class="form-label">Address:</label>
+                                    <input type="text" class="form-control" id="address" value="{{ $user->address }}" readonly>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="year" class="form-label">Rok:</label>
                                     <input type="text" class="form-control" id="year" value="{{ $user->year }}" readonly>
                                 </div>

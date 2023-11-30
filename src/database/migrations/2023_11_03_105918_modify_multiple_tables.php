@@ -37,9 +37,6 @@ return new class extends Migration
             $table->foreign('company_id')->references('id')->on('companies')
                 ->onDelete('no action')
                 ->onUpdate('no action');
-            $table->foreign('contract_id')->references('id')->on('contracts')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
 
         Schema::table('contacts', function (Blueprint $table) {
@@ -53,6 +50,9 @@ return new class extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
             $table->foreign('contact_id')->references('id')->on('contacts')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('job_id')->references('id')->on('jobs')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
@@ -92,7 +92,6 @@ return new class extends Migration
 
             Schema::table('jobs', function (Blueprint $table) {
                 $table->dropForeign(['company_id']);
-                $table->dropForeign(['contract_id']);
             });
 
             Schema::dropIfExists('jobs');
@@ -112,6 +111,7 @@ return new class extends Migration
             Schema::table('contracts', function (Blueprint $table) {
                 $table->dropForeign(['user_id']);
                 $table->dropForeign(['contact_id']);
+                $table->dropForeign(['job_id']);
             });
 
             Schema::dropIfExists('contracts');

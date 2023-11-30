@@ -8,7 +8,6 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Company_id</th>
-            <th scope="col">Contract_id</th>
             <th scope="col">Descripcion</th>
         </tr>
         </thead>
@@ -18,7 +17,6 @@
             <tr>
                 <td>{{ $job->id }}</td>
                 <td>{{ $job->company_id }}</td>
-                <td>{{ $job->contract_id }}</td>
                 <td>{{ $job->description }}</td>
             </tr>
         @endforeach
