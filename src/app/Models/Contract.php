@@ -12,6 +12,7 @@ class Contract extends Model
         'id',
         'user_id',
         'contact_id',
+        'job_id',
         'from',
         'to',
         'accepted',
@@ -26,5 +27,10 @@ class Contract extends Model
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class, 'contact_id');
+    }
+
+    public function job(): BelongsTo
+    {
+        return $this->belongsTo(Job::class, 'job_id');
     }
 }

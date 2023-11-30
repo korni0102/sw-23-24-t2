@@ -11,8 +11,7 @@ class Job extends Model
     protected $fillable = [
         'id',
         'company_id',
-        'contract_id',
-        'contract_type',
+        'job_type',
         'description'
     ];
 
@@ -21,8 +20,5 @@ class Job extends Model
         return $this->belongsTo(Company::class, 'company_id');
     }
 
-    public function contract(): BelongsTo
-    {
-        return $this->belongsTo(Contract::class, 'contract_id');
-    }
+
 }

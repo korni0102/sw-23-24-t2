@@ -94,6 +94,7 @@ class DatabaseSeeder extends Seeder
         $user->firstname = "meno";
         $user->lastname = "admin";
         $user->email = "admin@admin.com";
+        $user->address = "Nitra, Mariánska 11";
         $user->tel = "9999999";
         $user->year = "2023";
         $user->role_id = "1";
@@ -111,6 +112,7 @@ class DatabaseSeeder extends Seeder
         $user->firstname = "meno";
         $user->lastname = "student";
         $user->email = "student@student.com";
+        $user->address = "Nitra, Mariánska 1";
         $user->tel = "888888";
         $user->year = "2022";
         $user->role_id = "2";
@@ -141,10 +143,24 @@ class DatabaseSeeder extends Seeder
         $contact->company_id = 4;
         $contact->save();
 
+        //job ---------------------------------
+        $job = new Job();
+        $job->company_id = 1;
+        $job->job_type = "parttime";
+        $job->description = 'Programovanie v jazyku PHP';
+        $job->save();
+
+        $job = new Job();
+        $job->company_id = 2;
+        $job->job_type = "fulltime";
+        $job->description = 'Programovanie v jazyku Java';
+        $job->save();
+
         //contract -----------------------------
         $contract = new Contract();
         $contract->user_id = 1;
         $contract->contact_id = 1;
+        $contract->job_id = 1;
         $contract->from = '2023-11-01';
         $contract->to = '2022-11-30';
         $contract->accepted = true;
@@ -154,32 +170,19 @@ class DatabaseSeeder extends Seeder
         $contract = new Contract();
         $contract->user_id = 2;
         $contract->contact_id = 2;
+        $contract->job_id = 2;
         $contract->from = '2023-11-10';
         $contract->to = '2022-12-10';
         $contract->accepted = true;
         $contract->closed = false;
         $contract->save();
 
-        //job ---------------------------------
-        $job = new Job();
-        $job->company_id = 1;
-        $job->contract_id = 1;
-        $job->job_type = "parttime";
-        $job->description = 'Programovanie v jazyku PHP';
-        $job->save();
-
-        $job = new Job();
-        $job->company_id = 2;
-        $job->contract_id = 2;
-        $job->job_type = "fulltime";
-        $job->description = 'Programovanie v jazyku Java';
-        $job->save();
-
         // users -------------------------------
         $user = new User();
         $user->firstname = "Jano";
         $user->lastname = "Kiss";
         $user->email = "ppp@ppp.com";
+        $user->address = "Nitra, Trieda Andreja Hlinku 13";
         $user->tel = "888888528";
         $user->year = "2023";
         $user->role_id = "3";
@@ -198,6 +201,7 @@ class DatabaseSeeder extends Seeder
         $user->firstname = "Fero";
         $user->lastname = "Nagy";
         $user->email = "veduci@veduci.com";
+        $user->address = "Nitra, Dlhá 14";
         $user->tel = "088888528";
         $user->year = "2023";
         $user->role_id = "4";
@@ -216,6 +220,7 @@ class DatabaseSeeder extends Seeder
         $user->firstname = "Jancsi";
         $user->lastname = "Velikansky";
         $user->email = "zastupca@zastupca.com";
+        $user->address = "Nitra, Trieda Andreja Hlinku 13";
         $user->tel = "0988888528";
         $user->year = "2023";
         $user->role_id = "5";

@@ -22,6 +22,7 @@ class ProfileController extends Controller
             'firstname' => 'required|string|max:45',
             'lastname' => 'required|string|max:45',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'address' => 'required|string|max:100',
             'year' => 'required|int',
             // Add other validation rules as needed
         ]);
@@ -30,6 +31,7 @@ class ProfileController extends Controller
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
+            'address' => $request->address,
             'year' => $request->year,
             // Update other fields as needed
         ]);

@@ -41,10 +41,10 @@ class UserController extends Controller
             'lastname' => 'required|string|max:45',
             'year' => 'required|int',
             'email' => 'required|string|email|max:255|unique:users',
+            'address' => 'required|string|max:100',
             'tel' => 'required|string|max:255',
             'password' => 'required|string|min:8',
             'role_id' => 'required|int',
-            'study_program_id' => 'required|int',
         ]);
 
         $user = User::create([
@@ -52,10 +52,11 @@ class UserController extends Controller
             'lastname' => $validatedData['lastname'],
             'year' => $validatedData['year'],
             'email' => $validatedData['email'],
+            'address' => $validatedData['address'],
             'tel' => $validatedData['tel'],
             'password' => Hash::make($validatedData['password']),
             'role_id' => $validatedData['role_id'],
-            'study_program_id' => $validatedData['study_program_id'],
+            'study_program_id' => $request->input('study_program_id'),
         ]);
 
         RoleRequest::create([
