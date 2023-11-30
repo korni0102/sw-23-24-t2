@@ -3,12 +3,23 @@
 @section('body')
     @if (auth()->user())
         @if(auth()->user()->role_id==2)
-            <form action="{{ route('addCompany') }}" method="get">
-                @csrf
-                <li class="nav-item">
-                    <button type="submit" class="btn btn-primary">Pridať firmu</button>
-                </li>
-            </form>
+            <table>
+                <tr>
+                    <td>
+                        <form action="{{ route('addCompany') }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Pridať firmu</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ route('addContact') }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Pridať kontakt</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+
         @endif
 
         <table class="table">

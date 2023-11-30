@@ -66,3 +66,7 @@ Route::get('/contract-types/unpaid', [JobController::class, 'showUnpaidJobs'])->
 Route::get('/contract-types/full-time', [JobController::class, 'showFullTimeJobs'])->name('showFullTime');
 Route::get('/contract-types/freelancer', [JobController::class, 'showFreelancerJobs'])->name('showFreelancer');
 
+//addContacts
+Route::get('/addContact', [CompanyController::class, 'addContact'])->name('addContact');
+Route::post('/saveContact', [CompanyController::class, 'saveContact'])->name('saveContact');
+

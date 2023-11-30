@@ -26,10 +26,31 @@ class CompanyController extends Controller
             'name' => 'required|string|max:45',
             'address' => 'required|string|max:45',
         ]);
+    }
+    public function addContact() 
+    { 
+        $companies = Company::all();
+        return view('addContacts', ['companies' => $companies]);
+    }
+    
 
-        $companies = Company::create([
-            'name' => $validatedData['name'],
-            'address' => $validatedData['address'],
+    // Method to handle the form submission
+    public function saveContact(Request $request)
+    {
+        $validatedData = $request->validate([
+            'firstname' => 'required|string|max:45',
+            'lastname' => 'required|string|max:45',
+            'tel' => 'required|string|max:45',
+            'email' => 'required|string|max:45',
+            'company_id' => 'required|integer|max:45',
+        ]);
+
+        $contacts = Contact::create([
+            'firstname' => $validatedData['firstname'],
+            'lastname' => $validatedData['lastname'],
+            'tel' => $validatedData['tel'],
+            'email' => $validatedData['email'],
+            'company_id' => $validatedData['company_id'],
         ]);
 
         return redirect()->route('companies')->with("success", 'Pridanie prebehlo úspešne!');
