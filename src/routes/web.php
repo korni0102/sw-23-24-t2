@@ -70,3 +70,8 @@ Route::get('/contract-types/freelancer', [JobController::class, 'showFreelancerJ
 Route::get('/addContact', [CompanyController::class, 'addContact'])->name('addContact');
 Route::post('/saveContact', [CompanyController::class, 'saveContact'])->name('saveContact');
 
+//admin crud users
+Route::get('/users/edit/{id}', [AdminController::class, 'editUsers'])->name('users.edit');
+Route::put('/users/{id}', [AdminController::class, 'updateUsers'])->name('users.update');
+Route::delete('/users/{id}', [AdminController::class, 'destroyUsers'])->name('users.destroy');
+

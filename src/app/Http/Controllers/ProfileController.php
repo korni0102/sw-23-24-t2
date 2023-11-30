@@ -24,7 +24,6 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'address' => 'required|string|max:100',
             'year' => 'required|int',
-            // Add other validation rules as needed
         ]);
 
         $user->update([
@@ -33,7 +32,6 @@ class ProfileController extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'year' => $request->year,
-            // Update other fields as needed
         ]);
 
         return redirect()->route('profile.edit')->with('success', 'Profile updated successfully!');
