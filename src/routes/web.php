@@ -65,6 +65,10 @@ Route::get('/company/{id}/feedback', [CompanyController::class, 'addFeedback'])-
 Route::post('/company/feedback', [CompanyController::class, 'saveFeedback'])->name('company.saveFeedback');
 
 
+// Route to handle job application
+Route::post('/jobs/{id}/apply', [JobController::class, 'applyForJob'])->name('applyForJob');
+
+
 //rolerequest
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');
 Route::post('/request/changeStatus/{role_request_id}/{role_request_status}', [AdminController::class, 'changeStatus'])->name('admin.changeRequestStatus');

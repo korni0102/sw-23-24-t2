@@ -11,12 +11,31 @@
                     <thead>
                         <tr>
                             <th scope="col">Job Description</th>
+                            <th scope="col">Apply</th>
+                            <th scope="col">Student Name</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($company->jobs as $job)
                             <tr>
                                 <td>{{ $job->description }}</td>
+                                <td>
+                                    @if(auth()->user()->role_id == 2)
+                                    <form action="{{ route('applyForJob', $job->id) }}" method="post">
+    @csrf
+    <button type="submit" class="btn btn-primary">Apply</button>
+</form>
+                                    @else
+                                        <!-- Display a message or other content for non-student users -->
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(auth()->user()->role_id == 2)
+                                        {{ auth()->user()->firstname }} {{ auth()->user()->lastname }}
+                                    @else
+                                        <!-- Display a message or other content for non-student users -->
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
