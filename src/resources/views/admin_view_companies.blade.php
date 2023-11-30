@@ -4,7 +4,7 @@
 @if (auth()->user())
 <form action="{{ route('addCompany') }}" method="get">
     @csrf
-    @if(auth()->user()->role_id==1)
+    @if(auth()->user()->role_id==2)
         <li class="nav-item">
             <button type="submit" class="btn btn-primary">Pridať firmu</button>
         </li>
