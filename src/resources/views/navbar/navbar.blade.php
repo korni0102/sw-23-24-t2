@@ -25,19 +25,23 @@
                         <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Role requests</a>
                     </li>
                 @endif
+
                 @if(auth()->user()->role_id==1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 4)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('companies')}}">Companies</a>
                     </li>
                 @endif
-                @if(auth()->user()->role_id==2 || auth()->user()->role_id == 1)
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('jobs')}}">Jobs</a>
-    </li>
-    @if(auth()->user()->role_id == 2 )
+
+                @if(auth()->user()->role_id == 1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('jobs')}}">Jobs</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id == 2 )
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Contract Types
+                        Job Types
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('showPartTime') }}">Studentska brigada</a>
@@ -49,11 +53,6 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->role_id==2 || auth()->user()->role_id == 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jobs')}}">Jobs</a>
-                    </li>
-                @endif
                 @if(auth()->user()->role_id == 1)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,7 +67,7 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->role_id==4)
+                @if(auth()->user()->role_id==4 )
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showStudentsVeduci')}}">Studenti</a>
                     </li>
@@ -86,8 +85,10 @@
         </div>
     </div>
 </nav>
-@yield('body')
-@endif
+<div style="margin: 3%">
+    @yield('body')
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

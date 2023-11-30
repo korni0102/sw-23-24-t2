@@ -9,9 +9,7 @@ class JobController extends Controller
 {
 
     public function showJobs() {
-        //$jobs = Job::all();
-
-        $jobs = Job::with('contract')->get();
+        $jobs = Job::all();
         return view('jobsView', ['jobs' => $jobs]);
     }
 

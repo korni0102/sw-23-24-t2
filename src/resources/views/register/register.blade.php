@@ -79,9 +79,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <br>
-                    <div class="form-group">
+                    <div class="form-group" id="study_program_choose" style="display: none !important;">
                         <li class="list-group-item">
-                            <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="study_program_id" name="study_program_id" required>
+                            <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="study_program_id" name="study_program_id">
                                 <option value="" disabled selected hidden>Study Program</option>
                                 <option value="1">Aplikovaná ekológia a environmentalistika</option>
                                 <option value="2">Aplikovaná informatika</option>
@@ -126,6 +126,22 @@
             }
         });
     </script>
+
+    <script>
+
+        const roleId = document.getElementById('role_id');
+        const studyProgram = document.getElementById('study_program_choose');
+
+        roleId.addEventListener('change', function() {
+            if(this.value === "2"){
+                studyProgram.style.display = "";
+            }else {
+                studyProgram.style.display = "none";
+            }
+        });
+
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>

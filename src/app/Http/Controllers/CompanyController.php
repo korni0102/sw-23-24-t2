@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\Company; // Import the Company model
 
 class CompanyController extends Controller
 {
-    public function showCompanies() {     
+    public function showCompanies() {
         $companies = Company::all();
-        return view('admin_view_companies', ['companies' => $companies]);  
+
+        return view('admin_view_companies', ['companies' => $companies]);
     }
-    
+
     public function addCompany()
     {
         return view('addCompany');
@@ -33,9 +35,9 @@ class CompanyController extends Controller
         return redirect()->route('companies')->with("success", 'Pridanie prebehlo úspešne!');
     }
 }
-     
-
-    
 
 
-    
+
+
+
+
