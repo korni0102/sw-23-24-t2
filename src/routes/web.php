@@ -93,3 +93,10 @@ Route::get('/users/edit/{id}', [AdminController::class, 'editUsers'])->name('use
 Route::put('/users/{id}', [AdminController::class, 'updateUsers'])->name('users.update');
 Route::delete('/users/{id}', [AdminController::class, 'destroyUsers'])->name('users.destroy');
 
+//admin crud companies
+Route::get('/companies/edit/{id}', [AdminController::class, 'editCompany'])->name('companies.edit');
+Route::put('/companies/{id}', [AdminController::class, 'updateCompany'])->name('companies.update');
+Route::delete('/companies/{id}', [AdminController::class, 'destroyCompany'])->name('companies.destroy');
+
+
+

@@ -5,6 +5,10 @@ use App\Models\User;
 use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use App\Models\Contract;
+use App\Models\Contact;
+use App\Models\Company;
+use App\Models\Job;
+
 
 class AdminController extends Controller
 {
@@ -73,8 +77,7 @@ class AdminController extends Controller
             }
         }
 
-        $user->delete(); 
-
+        $user->delete();
         session()->flash('success', 'User deleted successfully');
         return redirect()->back();
     }
@@ -98,6 +101,48 @@ class AdminController extends Controller
         return redirect()->route($redirectView);
     }
 
+    public function editCompany($company_id, Request $request)
+    {
+        $company = Company::where('id', $company_id)->first();
+        return view('editCompany', compact('company'));
+    }
+
+    public function destroyCompany($company_id)
+    {
+        $company = Company::where('id', $company_id)->first();
+        
+        $jobs = Job::where('company_id', $company_id)->get();
+        if(!is_null($jobs)){
+            foreach($jobs as $job){
+                $job->delete();
+            }
+        }
+        
+        $contacts = Contact::where('company_id', $company_id)->get();
+        if(!is_null($contacts)){
+            foreach($contacts as $contact){
+                $contact->delete();
+            }
+        }
+
+        $company->delete();
+        session()->flash('success', 'User deleted successfully');
+        return redirect()->back();
+    }
+
+    public function updateCompany(Request $request, $company_id)
+    {
+        $company = Company::where('id', $company_id)->first();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            
+        ]);
+        $company->update($validatedData);
+        return redirect()->route('companies')
+            ->with('success', 'Prebiehlo úspešne');
+    }
 
 
 }

@@ -28,6 +28,8 @@
                 <th scope="col">Firma</th>
                 <th scope="col">Adresa</th>
                 <th scope="col">Contacts</th>
+                <th scope="col">Actions</th>
+
             </tr>
             </thead>
             <tbody>
@@ -40,6 +42,19 @@
                             {{ $company->contacts->isEmpty() ? 'disabled' : '' }}>
                             View Contacts
                         </button>
+                    </td>
+                    
+                    <td style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+                        <form action="{{ route('companies.edit', $company->id) }}" method="GET">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                        <form action="{{ route('companies.destroy', $company->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+
                     </td>
                 </tr>
                 <tr id="contacts_{{ $company->id }}" style="display: none;">
