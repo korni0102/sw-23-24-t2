@@ -147,13 +147,15 @@ class DatabaseSeeder extends Seeder
         $job = new Job();
         $job->company_id = 1;
         $job->job_type = "parttime";
-        $job->description = 'Programovanie v jazyku PHP';
+        $job->name = 'Programovanie v jazyku PHP';
+        $job->description = 'asdasdasd';
         $job->save();
 
         $job = new Job();
         $job->company_id = 2;
         $job->job_type = "fulltime";
-        $job->description = 'Programovanie v jazyku Java';
+        $job->name = 'Programovanie v jazyku Java';
+        $job->description = 'asdasdasd';
         $job->save();
 
         //contract -----------------------------

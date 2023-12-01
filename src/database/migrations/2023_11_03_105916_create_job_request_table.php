@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('job_requests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
-            $table->string('job_type', 100);
-            $table->string('name', 100);
-            $table->string('description', 250);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('job_id');
+            $table->boolean('accepted')->default(false);
+            $table->unsignedBigInteger('ppp_id')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('job_request');
     }
 };

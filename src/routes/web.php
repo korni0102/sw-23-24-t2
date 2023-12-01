@@ -56,15 +56,33 @@ Route::get('/showPPPs', [AdminController::class, 'showPPPs'])->name('showPPPs');
 Route::get('/showVeducis', [AdminController::class, 'showVeducis'])->name('showVeducis');
 Route::get('/showzastupcas', [AdminController::class, 'showzastupcas'])->name('showzastupcas');
 
+//veduci
 Route::get('/showStudentsVeduci', [UserController::class, 'showStudentforVeduci'])->name('showStudentsVeduci');
+Route::get('/showJobRequsets', [UserController::class, 'showJobRequsets'])->name('showJobRequsets');
+
+Route::get('/JobRequestJoin', [UserController::class, 'requestAjax'])->name('requestAjax');
+
+//ppp
+Route::get('/showJobRequsetsPPP', [UserController::class, 'showJobRequsetsPPP'])->name('showJobRequsetsPPP');
 
 
-// show Jobs podla type ↓
-Route::get('/contract-types/part-time', [JobController::class, 'showPartTimeJobs'])->name('showPartTime');
-Route::get('/contract-types/paid', [JobController::class, 'showPaidJobs'])->name('showPaid');
-Route::get('/contract-types/unpaid', [JobController::class, 'showUnpaidJobs'])->name('showUnpaid');
-Route::get('/contract-types/full-time', [JobController::class, 'showFullTimeJobs'])->name('showFullTime');
-Route::get('/contract-types/freelancer', [JobController::class, 'showFreelancerJobs'])->name('showFreelancer');
+
+// show Jobs podla type ↓ + vytvorit request
+Route::get('/job-types/part-time', [JobController::class, 'showPartTimeJobs'])->name('showPartTime');
+Route::get('/job-types/part-time/request', [JobController::class, 'requestPartTimeJob'])->name('requestPartTime');
+
+Route::get('/job-types/paid', [JobController::class, 'showPaidJobs'])->name('showPaid');
+Route::get('/job-types/paid/request', [JobController::class, 'requestPaidJob'])->name('requestPaid');
+
+Route::get('/job-types/unpaid', [JobController::class, 'showUnpaidJobs'])->name('showUnpaid');
+Route::get('/job-types/unpaid/request', [JobController::class, 'requestUnpaidJob'])->name('requestUnpaid');
+
+Route::get('/job-types/full-time', [JobController::class, 'showFullTimeJobs'])->name('showFullTime');
+Route::get('/job-types/full-time/request', [JobController::class, 'requestFullTimeJob'])->name('requestFullTime');
+
+Route::get('/job-types/freelancer', [JobController::class, 'showFreelancerJobs'])->name('showFreelancer');
+Route::get('/job-types/freelancer/request', [JobController::class, 'requestFreelancerJob'])->name('requestFreelancer');
+
 
 //addContacts
 Route::get('/addContact', [CompanyController::class, 'addContact'])->name('addContact');
