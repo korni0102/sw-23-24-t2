@@ -68,6 +68,19 @@ return new class extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
+
+        Schema::table('job_requests', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('job_id')->references('id')->on('jobs')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('ppp_id')->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+        });
+
     }
         /**
          * Reverse the migrations.
@@ -123,6 +136,13 @@ return new class extends Migration
             });
 
             Schema::dropIfExists('role_requests');
+
+            Schema::table('job_requests', function (Blueprint $table) {
+                $table->dropForeign(['user_id']);
+                $table->dropForeign(['job_id']);
+                $table->dropForeign(['ppp_id']);
+            });
+            Schema::dropIfExists('job_requests');
 
         }
     };

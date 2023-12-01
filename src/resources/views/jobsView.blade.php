@@ -23,7 +23,6 @@
             </tr>
         @endforeach
 
-        </tbody>
     </table>
 @endif
 @endsection

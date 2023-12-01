@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobRequest;
 use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -77,6 +78,32 @@ class UserController extends Controller
     public function showStudentforVeduci (){
         $users = User::where('role_id', 2)->get();
         return view('studentiView', ['users' => $users]);
+    }
+
+    public function showJobRequsets(){
+        $jobrequests = JobRequest::all();
+        $usersWithRoleFour = User::where('role_id', 3)->get();
+        return view('veduciShowRequests', [
+            'jobrequests' => $jobrequests,
+            'usersWithRoleFour' => $usersWithRoleFour
+        ]);
+    }
+
+    public function showJobRequsetsPPP(){
+
+        $jobrequests = JobRequest::where('ppp_id', auth()->user()->id)->get();
+
+        return view('pppShowRequests', ['jobrequests' => $jobrequests,]);
+    }
+
+    public function requestAjax(Request $request){
+
+        $jobRequestId = $request->input('jobRId');
+        $pppId = $request->input('pppId');
+
+        JobRequest::where('id', $jobRequestId)->first()->update(['ppp_id' => $pppId]);
+
+        return redirect()->route('showJobRequsets');
     }
 
 }

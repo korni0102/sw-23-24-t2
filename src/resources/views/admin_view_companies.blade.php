@@ -37,7 +37,7 @@
                     <td>{{ $company->address }}</td>
                     <td>
                         <button class="btn btn-dark" onclick="toggleContacts({{ $company->id }})"
-                        {{ $company->contacts->isEmpty() ? 'disabled' : '' }}>
+                            {{ $company->contacts->isEmpty() ? 'disabled' : '' }}>
                             View Contacts
                         </button>
                     </td>
