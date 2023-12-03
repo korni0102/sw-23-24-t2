@@ -26,7 +26,7 @@
                 <td>{{ $user->year }}</td>
                 <td style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
                     <form action="{{ route('users.edit', $user->id) }}" method="GET">
-                        <button type="submit" class="btn btn-primary">Update</a>
+                        <button type="submit" class="btn btn-primary">Update</button>
                         <input type="hidden" name="redirect_to" value="showVeducis">
                     </form>
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST">

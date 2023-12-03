@@ -20,5 +20,10 @@ class Company extends Model
     {
         return $this->hasMany(Contact::class, 'company_id');
     }
+
+    public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class, 'company_id');
+    }
 }
 
