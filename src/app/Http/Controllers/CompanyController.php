@@ -30,7 +30,7 @@ class CompanyController extends Controller
             'address' => $validatedData['address'],
         ]);
 
-        return redirect()->route('companies')->with("success", 'Pridanie prebehlo úspešne!');
+        return redirect()->route('viewCompaniesStudents')->with("success", 'Pridanie prebehlo úspešne!');
 
     }
 
@@ -58,8 +58,19 @@ class CompanyController extends Controller
             'company_id' => $validatedData['company_id'],
         ]);
 
-        return redirect()->route('companies')->with("success", 'Pridanie prebehlo úspešne!');
+        return redirect()->route('viewCompaniesStudents')->with("success", 'Pridanie prebehlo úspešne!');
     }
+
+    public function viewCompaniesStudents(){
+        $companies = Company::all();
+        return view('viewCompaniesStudents', ['companies' => $companies]);
+    }
+
+    public function viewCompaniesVeduci(){
+        $companies = Company::all();
+        return view('viewCompaniesVeduci', ['companies' => $companies]);
+    }
+
 }
 
 
