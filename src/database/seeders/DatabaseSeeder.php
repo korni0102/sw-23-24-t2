@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\StudyProgram;
 use App\Models\Contact;
 use App\Models\Contract;
+use App\Models\Feedback;
+use Illuminate\Support\Str;
 
 
 class DatabaseSeeder extends Seeder
@@ -197,6 +199,22 @@ class DatabaseSeeder extends Seeder
             'role_id' => '3',
             'accepted' => true
         ]);
+
+        //feedbacks --------------------------------
+
+        $feedback = new Feedback();
+        $feedback->text = Str::random(100);
+        $feedback->contract_id = 1;
+        $feedback->user_id = 1;
+        $feedback->contact_id = 1;
+        $feedback->save();
+
+        $feedback = new Feedback();
+        $feedback->text = Str::random(100);
+        $feedback->contract_id = 2;
+        $feedback->user_id = 2;
+        $feedback->contact_id = 2;
+        $feedback->save();
 
         // users -------------------------------
         $user = new User();

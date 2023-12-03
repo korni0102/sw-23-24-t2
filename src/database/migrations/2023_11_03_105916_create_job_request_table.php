@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('job_requests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('job_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('job_id')->nullable();
             $table->boolean('accepted')->default(false);
             $table->unsignedBigInteger('ppp_id')->nullable();
             $table->timestamps();

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('contact_id');
-            $table->unsignedBigInteger('job_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('contact_id')->nullable();
+            $table->unsignedBigInteger('job_id')->nullable();
             $table->date('from');
             $table->date('to');
             $table->tinyInteger('accepted')->default(false);

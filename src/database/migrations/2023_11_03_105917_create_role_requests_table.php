@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('role_requests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->boolean('accepted')->default(false);
             $table->unsignedBigInteger('admin_id')->nullable();

@@ -8,6 +8,9 @@ use App\Models\Contract;
 use App\Models\Contact;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\Feedback;
+use App\Models\JobRequest;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -63,7 +66,20 @@ class AdminController extends Controller
 
     public function destroyUsers($user_id)
     {
-        $user = User::where('id', $user_id)->first();
+
+        DB::transaction(function () use ($user_id) {
+            Feedback::where('user_id', $user_id)->update(['user_id' => null]);
+            RoleRequest::where('user_id', $user_id)->update(['user_id' => null]);
+            JobRequest::where('user_id', $user_id)->update(['user_id' => null]);
+            JobRequest::where('ppp_id', $user_id)->update(['ppp_id' => null]);
+            Contract::where('user_id', $user_id)->update(['user_id' => null]);
+            User::where('id', $user_id)->delete();
+        });
+
+        session()->flash('success', 'User deleted and related records updated successfully');
+        return redirect()->back();
+
+        /*$user = User::where('id', $user_id)->first();
 
         $roleRequest = RoleRequest::where('user_id', $user_id)->first();
         if(!is_null($roleRequest)){
@@ -79,7 +95,7 @@ class AdminController extends Controller
 
         $user->delete();
         session()->flash('success', 'User deleted successfully');
-        return redirect()->back();
+        return redirect()->back();*/
     }
 
 
@@ -109,7 +125,28 @@ class AdminController extends Controller
 
     public function destroyCompany($company_id)
     {
-        $company = Company::where('id', $company_id)->first();
+
+
+        DB::transaction(function () use ($company_id) {
+            $company = Company::with(['jobs', 'contacts'])->findOrFail($company_id);
+
+            $jobIds = $company->jobs->pluck('id');
+            $contactIds = $company->contacts->pluck('id');
+
+            Contract::whereIn('job_id', $jobIds)->update(['job_id' => null]);
+            Contract::whereIn('contact_id', $contactIds)->update(['contact_id' => null]);
+            Feedback::whereIn('contact_id', $contactIds)->update(['contact_id' => null]);
+            JobRequest::whereIn('job_id', $jobIds)->update(['job_id' => null]);
+            Job::destroy($jobIds);
+            Contact::destroy($contactIds);
+
+            $company->delete();
+        });
+
+        session()->flash('success', 'Company and related records have been successfully deleted.');
+        return redirect()->back();
+        
+        /*$company = Company::where('id', $company_id)->first();
         
         $jobs = Job::where('company_id', $company_id)->get();
         if(!is_null($jobs)){
@@ -127,7 +164,7 @@ class AdminController extends Controller
 
         $company->delete();
         session()->flash('success', 'User deleted successfully');
-        return redirect()->back();
+        return redirect()->back();*/
     }
 
     public function updateCompany(Request $request, $company_id)
