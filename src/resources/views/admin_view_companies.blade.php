@@ -2,17 +2,17 @@
 
 @section('body')
     @if (auth()->user())
-        @if(auth()->user()->role_id==2)
+        @if(auth()->user()->role_id==1)
             <table>
                 <tr>
                     <td>
-                        <form action="{{ route('addCompany') }}" method="get">
+                        <form action="{{ route('addCompanyAdmin') }}" method="get">
                             @csrf
                             <button type="submit" class="btn btn-primary">Pridať firmu</button>
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('addContact') }}" method="get">
+                        <form action="{{ route('addContactAdmin') }}" method="get">
                             @csrf
                             <button type="submit" class="btn btn-primary">Pridať kontakt</button>
                         </form>
@@ -34,6 +34,7 @@
             </thead>
             <tbody>
             @foreach ($companies as $company)
+
                 <tr>
                     <td>{{ $company->name }}</td>
                     <td>{{ $company->address }}</td>
@@ -43,7 +44,7 @@
                             View Contacts
                         </button>
                     </td>
-                    
+
                     <td style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
                         <form action="{{ route('companies.edit', $company->id) }}" method="GET">
                             <button type="submit" class="btn btn-primary">Update</button>
@@ -57,6 +58,7 @@
 
                     </td>
                 </tr>
+
                 <tr id="contacts_{{ $company->id }}" style="display: none;">
                     <td colspan="4">
                         <table class="table table-dark mb-0">

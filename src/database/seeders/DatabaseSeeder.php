@@ -148,6 +148,7 @@ class DatabaseSeeder extends Seeder
         //job ---------------------------------
         $job = new Job();
         $job->company_id = 1;
+        $job->contact_id = 1;
         $job->job_type = "parttime";
         $job->name = 'Programovanie v jazyku PHP';
         $job->description = 'asdasdasd';
@@ -155,15 +156,32 @@ class DatabaseSeeder extends Seeder
 
         $job = new Job();
         $job->company_id = 2;
+        $job->contact_id = 2;
         $job->job_type = "fulltime";
         $job->name = 'Programovanie v jazyku Java';
         $job->description = 'asdasdasd';
         $job->save();
 
+        $job = new Job();
+        $job->company_id = 3;
+        $job->contact_id = 2;
+        $job->job_type = "paid";
+        $job->name = 'Programovanie v jazyku Huskell';
+        $job->description = 'asdsadasdasdasdasda';
+        $job->save();
+
+        $job = new Job();
+        $job->company_id = 4;
+        $job->contact_id = 1;
+        $job->job_type = "unpaid";
+        $job->name = 'Programovanie v jazyku Python';
+        $job->description = 'pythonpythonpythhon';
+        $job->save();
+
+
         //contract -----------------------------
         $contract = new Contract();
         $contract->user_id = 1;
-        $contract->contact_id = 1;
         $contract->job_id = 1;
         $contract->from = '2023-11-01';
         $contract->to = '2022-11-30';
@@ -173,7 +191,6 @@ class DatabaseSeeder extends Seeder
 
         $contract = new Contract();
         $contract->user_id = 2;
-        $contract->contact_id = 2;
         $contract->job_id = 2;
         $contract->from = '2023-11-10';
         $contract->to = '2022-12-10';

@@ -31,7 +31,7 @@
 
                 @if(auth()->user()->role_id==1)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('companies')}}">Companies</a>
+                        <a class="nav-link" href="{{ route('admin_view_companies')}}">Companies</a>
                     </li>
                 @endif
 
@@ -79,6 +79,12 @@
                         <a class="dropdown-item" href="{{ route('showVeducis') }}">Veduci pracoviska</a>
                         <a class="dropdown-item" href="{{ route('showzastupcas') }}">Zastupca firmy</a>
                         </div>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id==2)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('studentViewContracts')}}">My contracts</a>
                     </li>
                 @endif
 

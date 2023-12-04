@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('study_program_id')->nullable();
             $table->integer('year');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('lastname', 45);
             $table->string('tel', 45)->nullable();
             $table->string('email', 45);
-            $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('company_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -98,7 +98,8 @@ class UserController extends Controller
 
     public function showJobRequsetsPPP(){
 
-        $jobrequests = JobRequest::where('ppp_id', auth()->user()->id)->get();
+        $jobrequests = JobRequest::where('ppp_id', auth()->user()->id)->where('accepted', false)->get();
+
 
         return view('pppShowRequests', ['jobrequests' => $jobrequests,]);
     }
@@ -118,6 +119,40 @@ class UserController extends Controller
         $jobRequest->delete();
         session()->flash('success', 'Job request deleted successfully');
         return redirect()->back();
+    }
+
+    public function pppAcceptJobRequest($jobRequestId){
+
+        DB::transaction(function () use ($jobRequestId) {
+            $jobRequest = JobRequest::findOrFail($jobRequestId);
+
+            $pppId = auth()->user()->id;
+
+            $jobRequest->accepted = true;
+            $jobRequest->ppp_id = $pppId;
+            $jobRequest->save();
+
+            $contract = new Contract();
+            $contract->user_id = $jobRequest->user_id;
+            $contract->job_id = $jobRequest->job_id;
+            $contract->from = now();
+            $contract->to = now()->addYear();
+            $contract->accepted = true;
+            $contract->closed = false;
+            $contract->save();
+
+        });
+
+
+        session()->flash('success', 'Job request accepted and contract created.');
+        return redirect()->back();
+    }
+
+    public function studentViewContracts(){
+
+        $contracts = Contract::where('user_id', auth()->user()->id)->get();
+        return view('student_view_contracts', ['contracts' => $contracts]);
+
     }
 
 }
