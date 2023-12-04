@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('contact_id');
             $table->string('job_type', 100);
             $table->string('name', 100);
             $table->string('description', 250);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

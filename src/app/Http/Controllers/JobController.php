@@ -11,32 +11,32 @@ class JobController extends Controller
 {
 
     public function showJobs() {
-        $jobs = Job::all();
+        $jobs = Job::with('company')->whereHas('company')->get();
         return view('jobsView', ['jobs' => $jobs]);
     }
 
     public function showPartTimeJobs() {
-        $partTimeJobs = Job::where('job_type', 'parttime')->get();
+        $partTimeJobs = Job::with('company')->whereHas('company')->where('job_type', 'parttime')->get();
         return view('jobs_type.parttime', ['jobs' => $partTimeJobs]);
     }
 
     public function showPaidJobs() {
-        $paidJobs = Job::where('job_type', 'paid')->get();
+        $paidJobs = Job::with('company')->whereHas('company')->where('job_type', 'paid')->get();
         return view('jobs_type.paid', ['jobs' => $paidJobs]);
     }
 
     public function showUnpaidJobs() {
-        $unpaidJobs = Job::where('job_type', 'unpaid')->get();
+        $unpaidJobs = Job::with('company')->whereHas('company')->where('job_type', 'unpaid')->get();
         return view('jobs_type.unpaid', ['jobs' => $unpaidJobs]);
     }
 
     public function showFullTimeJobs() {
-        $fullTimeJobs = Job::where('job_type', 'fulltime')->get();
+        $fullTimeJobs = Job::with('company')->whereHas('company')->where('job_type', 'fulltime')->get();
         return view('jobs_type.fulltime', ['jobs' => $fullTimeJobs]);
     }
 
     public function showFreelancerJobs() {
-        $freelancerJobs = Job::where('job_type', 'freelancer')->get();
+        $freelancerJobs = Job::with('company')->whereHas('company')->where('job_type', 'freelancer')->get();
         return view('jobs_type.freelancer', ['jobs' => $freelancerJobs]);
     }
 

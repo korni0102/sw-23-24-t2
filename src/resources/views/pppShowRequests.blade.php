@@ -29,6 +29,11 @@
                     <td>{{ $jobrequest->address }}</td>
                     <td>{{ $jobrequest->tel }}</td>
                     <td>
+                        <form action="{{ route('job-requests.accept', $jobrequest->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Accept</button>
+                        </form>
+
                         <form action="{{ route('jobRequestPPP.destroy', $jobrequest->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

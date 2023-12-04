@@ -68,41 +68,19 @@ class AdminController extends Controller
     {
 
         DB::transaction(function () use ($user_id) {
-            Feedback::where('user_id', $user_id)->update(['user_id' => null]);
-            RoleRequest::where('user_id', $user_id)->update(['user_id' => null]);
-            JobRequest::where('user_id', $user_id)->update(['user_id' => null]);
-            JobRequest::where('ppp_id', $user_id)->update(['ppp_id' => null]);
-            Contract::where('user_id', $user_id)->update(['user_id' => null]);
             User::where('id', $user_id)->delete();
         });
 
         session()->flash('success', 'User deleted and related records updated successfully');
         return redirect()->back();
 
-        /*$user = User::where('id', $user_id)->first();
-
-        $roleRequest = RoleRequest::where('user_id', $user_id)->first();
-        if(!is_null($roleRequest)){
-            $roleRequest->delete();
-        }
-
-        $contracts = Contract::where('user_id', $user_id)->get();
-        if(!is_null($contracts)){
-            foreach($contracts as $contract){
-                $contract->delete();
-            }
-        }
-
-        $user->delete();
-        session()->flash('success', 'User deleted successfully');
-        return redirect()->back();*/
     }
 
 
     public function updateUsers(Request $request, $user_id)
     {
         $user = User::where('id', $user_id)->first();
-        
+
         $validatedData = $request->validate([
             'firstname' => 'required|string|max:45',
             'lastname' => 'required|string|max:45',
@@ -126,45 +104,14 @@ class AdminController extends Controller
     public function destroyCompany($company_id)
     {
 
-
         DB::transaction(function () use ($company_id) {
-            $company = Company::with(['jobs', 'contacts'])->findOrFail($company_id);
-
-            $jobIds = $company->jobs->pluck('id');
-            $contactIds = $company->contacts->pluck('id');
-
-            Contract::whereIn('job_id', $jobIds)->update(['job_id' => null]);
-            Contract::whereIn('contact_id', $contactIds)->update(['contact_id' => null]);
-            Feedback::whereIn('contact_id', $contactIds)->update(['contact_id' => null]);
-            JobRequest::whereIn('job_id', $jobIds)->update(['job_id' => null]);
-            Job::destroy($jobIds);
-            Contact::destroy($contactIds);
-
+            $company = Company::findOrFail($company_id);
             $company->delete();
         });
 
         session()->flash('success', 'Company and related records have been successfully deleted.');
         return redirect()->back();
-        
-        /*$company = Company::where('id', $company_id)->first();
-        
-        $jobs = Job::where('company_id', $company_id)->get();
-        if(!is_null($jobs)){
-            foreach($jobs as $job){
-                $job->delete();
-            }
-        }
-        
-        $contacts = Contact::where('company_id', $company_id)->get();
-        if(!is_null($contacts)){
-            foreach($contacts as $contact){
-                $contact->delete();
-            }
-        }
 
-        $company->delete();
-        session()->flash('success', 'User deleted successfully');
-        return redirect()->back();*/
     }
 
     public function updateCompany(Request $request, $company_id)
@@ -174,10 +121,10 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            
+
         ]);
         $company->update($validatedData);
-        return redirect()->route('companies')
+        return redirect()->route('viewCompaniesStudents')
             ->with('success', 'Prebiehlo úspešne');
     }
 

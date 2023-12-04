@@ -32,4 +32,11 @@ class JobRequest extends Model
     {
         return $this->belongsTo(User::class, 'ppp_id');
     }
+
+
+
+
+
+
+
 }

@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->text('text');
-            $table->unsignedBigInteger('contract_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('contact_id')->nullable();
+            $table->unsignedBigInteger('contract_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('contact_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

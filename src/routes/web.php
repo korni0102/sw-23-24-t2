@@ -32,7 +32,7 @@ Route::get('/register', [UserController::class, 'registerUser'])->name('register
 Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user');
 
 //vypis
-Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies');
+Route::get('/admin_view_companies', [CompanyController::class, 'showCompanies'])->name('admin_view_companies');
 Route::get('/viewCompaniesStudents', [CompanyController::class, 'viewCompaniesStudents'])->name('viewCompaniesStudents');
 Route::get('/viewCompaniesVeduci', [CompanyController::class, 'viewCompaniesVeduci'])->name('viewCompaniesVeduci');
 Route::get('/jobs', [JobController::class, 'showJobs'])->name('jobs');
@@ -48,11 +48,20 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/request/modify', [AdminController::class, 'modifyRoleRequest'])->name('admin.modifyRoleRequest');
 Route::post('/request/changeStatus/{role_request_id}/{role_request_status}', [AdminController::class, 'changeStatus'])->name('admin.changeRequestStatus');
 
-//addCompany
+//addCompany student
 Route::get('/addCompany', [CompanyController::class, 'addCompany'])->name('addCompany');
 Route::post('/saveCompany', [CompanyController::class, 'saveCompany'])->name('saveCompany');
+//addContacts student
+Route::get('/addContact', [CompanyController::class, 'addContact'])->name('addContact');
+Route::post('/saveContact', [CompanyController::class, 'saveContact'])->name('saveContact');
+//admin
+Route::get('/addCompanyAdmin', [CompanyController::class, 'addCompanyAdmin'])->name('addCompanyAdmin');
+Route::post('/saveCompanyAdmin', [CompanyController::class, 'saveCompanyAdmin'])->name('saveCompanyAdmin');
+//admin addContacts
+Route::get('/addContactAdmin', [CompanyController::class, 'addContactAdmin'])->name('addContactAdmin');
+Route::post('/saveContactAdmin', [CompanyController::class, 'saveContactAdmin'])->name('saveContactAdmin');
 
-
+//admin show users
 Route::get('/showStudents', [AdminController::class, 'showStudents'])->name('showStudents');
 Route::get('/showPPPs', [AdminController::class, 'showPPPs'])->name('showPPPs');
 Route::get('/showVeducis', [AdminController::class, 'showVeducis'])->name('showVeducis');
@@ -67,7 +76,7 @@ Route::get('/JobRequestJoin', [UserController::class, 'requestAjax'])->name('req
 Route::get('/showJobRequsetsPPP', [UserController::class, 'showJobRequsetsPPP'])->name('showJobRequsetsPPP');
 Route::get('/showJobRequsetsPPP', [UserController::class, 'showJobRequsetsPPP'])->name('showJobRequsetsPPP');
 Route::delete('/deleteJobRequsets/{id}', [UserController::class, 'deleteJobRequsetsPPP'])->name('jobRequestPPP.destroy');
-
+Route::post('/job-requests/accept/{jobRequestId}', [UserController::class, 'pppAcceptJobRequest'])->name('job-requests.accept');
 
 // show Jobs podla type ↓ + vytvorit request
 Route::get('/job-types/part-time', [JobController::class, 'showPartTimeJobs'])->name('showPartTime');
@@ -85,9 +94,8 @@ Route::get('/job-types/full-time/request', [JobController::class, 'requestFullTi
 Route::get('/job-types/freelancer', [JobController::class, 'showFreelancerJobs'])->name('showFreelancer');
 Route::get('/job-types/freelancer/request', [JobController::class, 'requestFreelancerJob'])->name('requestFreelancer');
 
-//addContacts
-Route::get('/addContact', [CompanyController::class, 'addContact'])->name('addContact');
-Route::post('/saveContact', [CompanyController::class, 'saveContact'])->name('saveContact');
+//student view contract
+Route::get('/studentViewContracts', [UserController::class, 'studentViewContracts'])->name('studentViewContracts');
 
 //admin crud users
 Route::get('/users/edit/{id}', [AdminController::class, 'editUsers'])->name('users.edit');
