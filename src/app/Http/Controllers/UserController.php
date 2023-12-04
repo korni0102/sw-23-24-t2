@@ -28,6 +28,10 @@ class UserController extends Controller
     public function registerUser(){
         return view('register.register');
     }
+    public function showFAQ(){
+        return view('faqView');
+    }
+    
 
     /**
      * @param Request $request
