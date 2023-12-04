@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
+use App\Models\Feedback;
 use App\Models\JobRequest;
 use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -104,6 +107,13 @@ class UserController extends Controller
         JobRequest::where('id', $jobRequestId)->first()->update(['ppp_id' => $pppId]);
 
         return redirect()->route('showJobRequsets');
+    }
+
+    public function deleteJobRequsetsPPP($jobRequestId){
+        $jobRequest = JobRequest::findOrFail($jobRequestId);
+        $jobRequest->delete();
+        session()->flash('success', 'Job request deleted successfully');
+        return redirect()->back();
     }
 
 }

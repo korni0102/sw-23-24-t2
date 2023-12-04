@@ -33,6 +33,8 @@ Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user')
 
 //vypis
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies');
+Route::get('/viewCompaniesStudents', [CompanyController::class, 'viewCompaniesStudents'])->name('viewCompaniesStudents');
+Route::get('/viewCompaniesVeduci', [CompanyController::class, 'viewCompaniesVeduci'])->name('viewCompaniesVeduci');
 Route::get('/jobs', [JobController::class, 'showJobs'])->name('jobs');
 
 //User_Info
@@ -59,12 +61,12 @@ Route::get('/showzastupcas', [AdminController::class, 'showzastupcas'])->name('s
 //veduci
 Route::get('/showStudentsVeduci', [UserController::class, 'showStudentforVeduci'])->name('showStudentsVeduci');
 Route::get('/showJobRequsets', [UserController::class, 'showJobRequsets'])->name('showJobRequsets');
-
 Route::get('/JobRequestJoin', [UserController::class, 'requestAjax'])->name('requestAjax');
 
 //ppp
 Route::get('/showJobRequsetsPPP', [UserController::class, 'showJobRequsetsPPP'])->name('showJobRequsetsPPP');
-
+Route::get('/showJobRequsetsPPP', [UserController::class, 'showJobRequsetsPPP'])->name('showJobRequsetsPPP');
+Route::delete('/deleteJobRequsets/{id}', [UserController::class, 'deleteJobRequsetsPPP'])->name('jobRequestPPP.destroy');
 
 
 // show Jobs podla type ↓ + vytvorit request
@@ -82,7 +84,6 @@ Route::get('/job-types/full-time/request', [JobController::class, 'requestFullTi
 
 Route::get('/job-types/freelancer', [JobController::class, 'showFreelancerJobs'])->name('showFreelancer');
 Route::get('/job-types/freelancer/request', [JobController::class, 'requestFreelancerJob'])->name('requestFreelancer');
-
 
 //addContacts
 Route::get('/addContact', [CompanyController::class, 'addContact'])->name('addContact');
