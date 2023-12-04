@@ -31,6 +31,9 @@ Route::get('/main', [UserController::class,'index'])->name('user.index');
 Route::get('/register', [UserController::class, 'registerUser'])->name('register.user');
 Route::post('/saveUser', [UserController::class, 'saveUser'])->name('save.user');
 
+//faq
+Route::get('/faq', [UserController::class, 'showFAQ'])->name('faqView');
+
 //vypis
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies');
 Route::get('/viewCompaniesStudents', [CompanyController::class, 'viewCompaniesStudents'])->name('viewCompaniesStudents');
