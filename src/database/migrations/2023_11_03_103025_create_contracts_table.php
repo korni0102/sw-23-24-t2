@@ -19,6 +19,9 @@ return new class extends Migration
             $table->date('to');
             $table->tinyInteger('accepted')->default(false);
             $table->tinyInteger('closed')->default(false);
+            $table->unsignedBigInteger('ppp_id')->nullable();
+            $table->string('hodnotenie', 25)->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

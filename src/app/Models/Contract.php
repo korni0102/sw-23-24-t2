@@ -21,7 +21,9 @@ class Contract extends Model
         'from',
         'to',
         'accepted',
-        'closed'
+        'closed',
+        'ppp_id',
+        'hodnotenie',
     ];
 
     public function user(): BelongsTo
@@ -37,5 +39,10 @@ class Contract extends Model
     public function job(): BelongsTo
     {
         return $this->belongsTo(Job::class, 'job_id');
+    }
+
+    public function ppp(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'ppp_id');
     }
 }

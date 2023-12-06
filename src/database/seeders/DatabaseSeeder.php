@@ -145,6 +145,23 @@ class DatabaseSeeder extends Seeder
             'accepted' => true
         ]);
 
+        $user = new User();
+        $user->firstname = "fero";
+        $user->lastname = "nagy";
+        $user->email = "fero@fero.com";
+        $user->address = "Nitra, Mariánska 1555";
+        $user->tel = "++421914774525";
+        $user->year = "2023";
+        $user->role_id = "2";
+        $user->study_program_id = "2";
+        $user->password = bcrypt("adminadmin");
+        $user->save();
+        RoleRequest::create([
+            'user_id' => $user->id,
+            'role_id' => '2',
+            'accepted' => true
+        ]);
+
         //contact ------------------------------
         $contact = new Contact();
         $contact->firstname = "František";
@@ -230,21 +247,25 @@ class DatabaseSeeder extends Seeder
 
         //contract -----------------------------
         $contract = new Contract();
-        $contract->user_id = 1;
-        $contract->job_id = 1;
+        $contract->user_id = 2;
+        $contract->job_id = 2;
         $contract->from = '2023-11-01';
         $contract->to = '2022-11-30';
         $contract->accepted = true;
         $contract->closed = false;
+        $contract->hodnotenie = null;
+        $contract->ppp_id = 7;
         $contract->save();
 
         $contract = new Contract();
-        $contract->user_id = 2;
-        $contract->job_id = 2;
+        $contract->user_id = 3;
+        $contract->job_id = 3;
         $contract->from = '2023-11-01';
         $contract->to = '2022-12-01';
         $contract->accepted = true;
         $contract->closed = true;
+        $contract->hodnotenie = "A";
+        $contract->ppp_id = 7;
         $contract->save();
 
         // PPP -------------------------------

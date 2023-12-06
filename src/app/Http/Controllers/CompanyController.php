@@ -16,7 +16,7 @@ class CompanyController extends Controller
     }
 
     public function addCompanyAdmin(){
-        return view('addCompany');
+        return view('addCompanyAdmin');
     }
 
     public function addContactAdmin(){

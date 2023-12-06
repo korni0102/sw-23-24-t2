@@ -34,7 +34,7 @@ class UserController extends Controller
     public function showFAQ(){
         return view('faqView');
     }
-    
+
 
     /**
      * @param Request $request
@@ -139,11 +139,11 @@ class UserController extends Controller
             $contract->to = now()->addYear();
             $contract->accepted = true;
             $contract->closed = false;
+            $contract->hodnotenie = null;
+            $contract->ppp_id = $pppId;
             $contract->save();
 
         });
-
-
         session()->flash('success', 'Job request accepted and contract created.');
         return redirect()->back();
     }
@@ -154,5 +154,34 @@ class UserController extends Controller
         return view('student_view_contracts', ['contracts' => $contracts]);
 
     }
+
+    public function showGradesStudent(){
+
+        $contracts = Contract::where('user_id', auth()->user()->id)
+            ->whereNotNull('hodnotenie')
+            ->get();
+        return view('student_view_grades', ['contracts' => $contracts]);
+    }
+
+
+    public function showGradeStudentPPP() {
+        $contracts = Contract::where('ppp_id', auth()->user()->id)->get();
+        return view('showGradeStudentPPP', ['contracts' => $contracts]);
+    }
+
+    public function editGradePPP($contract_id, Request $request){
+        $contract = Contract::where('id', $contract_id)->first();
+        return view('editGradePPP', compact('contract'));
+    }
+
+    public function changeGradePPP($contract_id, Request $request){
+        $contract = Contract::where('id', $contract_id)->first();
+        $validatedData = $request->validate([
+            'hodnotenie' => 'string|max:25',
+        ]);
+        $contract->update($validatedData);
+        return redirect()->route('showGradeStudentPPP')->with('success', 'Hodnotenie updated successfully.');
+    }
+
 
 }
