@@ -23,7 +23,11 @@
                 <tr>
                     <td>{{ $contract->user->firstname }}</td>
                     <td>{{ $contract->user->lastname }}</td>
-                    <td>{{ $contract->job->company->name }}</td>
+                    @if($contract->job->company)
+                        <td>{{ $contract->job->company?->name }}</td>
+                    @else
+                        <td>Neaktivna spolocnost</td>
+                    @endif
                     <td>{{ $contract->job->name }}</td>
                     <td>{{ $contract->job->description }}</td>
                     <td>{{ $contract->from }}</td>
