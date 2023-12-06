@@ -5,18 +5,16 @@
 
         <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">Meno</th>
-                    <th scope="col">Priezvisko</th>
-                    <th scope="col">Firma</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">From</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Accepted</th>
-                    <th scope="col">Closed</th>
+            <tr>
+                <th scope="col">Meno</th>
+                <th scope="col">Priezvisko</th>
+                <th scope="col">Firma</th>
+                <th scope="col">Name</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Hodnotenie</th>
 
-                </tr>
+            </tr>
             </thead>
             <tbody>
             @foreach ($contracts as $contract)
@@ -30,11 +28,9 @@
                         <td>Neaktivna spolocnost</td>
                     @endif
                     <td>{{ $contract->job->name }}</td>
-                    <td>{{ $contract->job->description }}</td>
                     <td>{{ $contract->from }}</td>
                     <td>{{ $contract->to }}</td>
-                    <td>{{ $contract->accepted }}</td>
-                    <td>{{ $contract->closed }}</td>
+                    <td>{{ $contract->hodnotenie }}</td>
 
                 </tr>
             @endforeach

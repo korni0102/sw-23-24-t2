@@ -2,7 +2,7 @@
 
 @section('body')
     @if (auth()->user())
-        @if(auth()->user()->role_id==1)
+        @if(auth()->user()->role_id==1 || auth()->user()->role_id==3)
             <table>
                 <tr>
                     <td>

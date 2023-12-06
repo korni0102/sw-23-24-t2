@@ -110,5 +110,13 @@ Route::get('/companies/edit/{id}', [AdminController::class, 'editCompany'])->nam
 Route::put('/companies/{id}', [AdminController::class, 'updateCompany'])->name('companies.update');
 Route::delete('/companies/{id}', [AdminController::class, 'destroyCompany'])->name('companies.destroy');
 
+//student view hodnotenie
+Route::get('/showGradesStudent', [UserController::class, 'showGradesStudent'])->name('showGradesStudent');
+
+Route::get('/showGradeStudentPPP', [UserController::class, 'showGradeStudentPPP'])->name('showGradeStudentPPP');
+Route::get('/editGradePPP/edit/{id}', [UserController::class, 'editGradePPP'])->name('editGradePPP');
+Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->name('changeGradePPP');
+
+
 
 

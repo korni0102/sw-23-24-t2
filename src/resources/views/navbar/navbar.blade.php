@@ -29,7 +29,7 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->role_id==1)
+                @if(auth()->user()->role_id==1 || auth()->user()->role_id==3)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin_view_companies')}}">Companies</a>
                     </li>
@@ -53,7 +53,13 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->role_id == 2 )
+                @if(auth()->user()->role_id == 3)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showGradeStudentPPP')}}">Hodnotenie študentov</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id == 2)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Job Types
@@ -100,11 +106,17 @@
                     </li>
                 @endif
 
-                    @if(auth()->user()->role_id==3)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('showJobRequsetsPPP')}}">JobRequests</a>
-                        </li>
-                    @endif
+                @if(auth()->user()->role_id==3)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showJobRequsetsPPP')}}">JobRequests</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id==2)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showGradesStudent')}}">Moje hodnotenia</a>
+                    </li>
+                @endif
             </ul>
             <form class="d-flex" role="search">
                 <a class="user" style="text-decoration: none " href="{{ route('profile.edit') }}">
