@@ -17,7 +17,7 @@
         @foreach($jobs as $job)
             <tr>
                 <td>{{ $job->id }}</td>
-                <td>{{ $job->company }}</td>
+                <td>{{ $job->company->name }}</td>
                 <td>{{ $job->job_type }}</td>
                 <td>{{ $job->description }}</td>
             </tr>
