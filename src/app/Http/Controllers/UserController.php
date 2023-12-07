@@ -75,12 +75,14 @@ class UserController extends Controller
         return redirect()->route('login.page')->with("success", 'Registrácia prebiehla úspešne, musíte čakať na admina!');
     }
 
+
     public function ShowUser()
     {
         $usersWithPosts = User::with('posts')->get();
 
         return view('user_view', ['usersWithPosts' => $usersWithPosts]);
     }
+
 
     public function showStudentforVeduci (){
         $users = User::where('role_id', 2)->get();
@@ -182,11 +184,4 @@ class UserController extends Controller
         $contract->update($validatedData);
         return redirect()->route('showGradeStudentPPP')->with('success', 'Hodnotenie updated successfully.');
     }
-
-    public function export_student_pdf() {
-
-        
-    }
-
-
 }
