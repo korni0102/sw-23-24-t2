@@ -17,6 +17,13 @@
                             <button type="submit" class="btn btn-primary">Pridať kontakt</button>
                         </form>
                     </td>
+
+                    <td>
+                        <form action="{{ route('addJob') }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Pridať job</button>
+                        </form>
+                    </td>
                 </tr>
             </table>
 

@@ -119,4 +119,5 @@ Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->n
 
 
 
-
+Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
+Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');

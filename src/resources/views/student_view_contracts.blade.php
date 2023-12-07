@@ -36,6 +36,7 @@
                     <td>{{ $contract->accepted }}</td>
                     <td>{{ $contract->closed }}</td>
 
+
                 </tr>
             @endforeach
             </tbody>
