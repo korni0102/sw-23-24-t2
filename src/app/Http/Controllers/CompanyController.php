@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Job;
 class CompanyController extends Controller
+
 {
 
     //PRE ADMINA
@@ -122,7 +124,39 @@ class CompanyController extends Controller
         return view('viewCompaniesVeduci', ['companies' => $companies]);
     }
 
+    public function addJob()
+    {
+        $companies = Company::all(); 
+        $contacts = Contact::all(); 
+
+        return view('addJobs', compact('companies', 'contacts'));
+    }
+
+
+    // pre studenta
+    public function saveJob(Request $request)
+    {   
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255', 
+            'description' => 'required|string|max:255',
+            'job_type' => 'required|string|max:255', 
+            'contact_id' => 'required|integer|exists:contacts,id', 
+            'company_id' => 'required|integer|exists:companies,id', 
+        ]);
+        $job = Job::create([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'job_type' => $validatedData['job_type'],
+            'contact_id' => $validatedData['contact_id'],
+            'company_id' => $validatedData['company_id'],
+        ]);
+
+        return redirect()->route('viewCompaniesStudents')->with("success", 'Pridanie prebehlo úspešne!');
+    }
+
 }
+    
+
 
 
 

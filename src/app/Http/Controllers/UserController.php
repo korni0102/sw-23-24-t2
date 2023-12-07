@@ -183,5 +183,10 @@ class UserController extends Controller
         return redirect()->route('showGradeStudentPPP')->with('success', 'Hodnotenie updated successfully.');
     }
 
+    public function export_student_pdf() {
+
+        
+    }
+
 
 }
