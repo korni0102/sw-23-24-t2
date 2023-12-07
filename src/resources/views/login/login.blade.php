@@ -49,6 +49,11 @@
 
                     <button type="submit" class="btn btn-warning">Registrácia</button>
                 </form>
+                <br>
+                <form action="{{ route('faqView') }}" method="get">
+
+                    <button type="submit" class="btn btn-warning">FAQ</button>
+                    </form>
             </div>
 
         </div>

@@ -15,6 +15,7 @@
                         <h2>User Information</h2>
                         <p>Name: {{ $user->firstname }} {{ $user->lastname }}</p>
                         <p>Email: {{ $user->email }}</p>
+                            <p>Address: {{ $user->address }}</p>
                         <p>Year: {{ $user->year }}</p>
                         <!-- Add other user information fields as needed -->
 

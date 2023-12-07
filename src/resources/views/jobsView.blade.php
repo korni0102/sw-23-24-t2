@@ -7,8 +7,8 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Company_id</th>
-            <th scope="col">Contract_id</th>
+            <th scope="col">Company</th>
+            <th scope="col">Job_type</th>
             <th scope="col">Descripcion</th>
         </tr>
         </thead>
@@ -17,13 +17,12 @@
         @foreach($jobs as $job)
             <tr>
                 <td>{{ $job->id }}</td>
-                <td>{{ $job->company_id }}</td>
-                <td>{{ $job->contract_id }}</td>
+                <td>{{ $job->company->name }}</td>
+                <td>{{ $job->job_type }}</td>
                 <td>{{ $job->description }}</td>
             </tr>
         @endforeach
 
-        </tbody>
     </table>
 @endif
 @endsection

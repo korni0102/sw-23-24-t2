@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('contact_id');
+            $table->unsignedBigInteger('job_id');
             $table->date('from');
             $table->date('to');
             $table->tinyInteger('accepted')->default(false);
             $table->tinyInteger('closed')->default(false);
+            $table->unsignedBigInteger('ppp_id')->nullable();
+            $table->string('hodnotenie', 25)->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
