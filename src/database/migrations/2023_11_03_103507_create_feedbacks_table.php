@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('text');
             $table->unsignedBigInteger('contract_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('contact_id');
             $table->timestamps();
             $table->softDeletes();
         });

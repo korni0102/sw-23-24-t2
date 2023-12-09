@@ -13,7 +13,7 @@
                 <th scope="col">From</th>
                 <th scope="col">To</th>
                 <th scope="col">Hodnotenie</th>
-
+                <th scope="col">Feedback</th>
             </tr>
             </thead>
             <tbody>
@@ -31,7 +31,12 @@
                     <td>{{ $contract->from }}</td>
                     <td>{{ $contract->to }}</td>
                     <td>{{ $contract->hodnotenie }}</td>
+                     <td>
+                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#feedbackModal" onclick="window.location='{{ route('feedback.create', ['contractId' => $contract->id]) }}'">
+                        Give Feedback
+                    </button>
 
+                    </td>
                 </tr>
             @endforeach
             </tbody>

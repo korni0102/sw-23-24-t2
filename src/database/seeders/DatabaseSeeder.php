@@ -394,14 +394,12 @@ class DatabaseSeeder extends Seeder
         $feedback->text = Str::random(100);
         $feedback->contract_id = 1;
         $feedback->user_id = 1;
-        $feedback->contact_id = 1;
         $feedback->save();
 
         $feedback = new Feedback();
         $feedback->text = Str::random(100);
         $feedback->contract_id = 2;
         $feedback->user_id = 2;
-        $feedback->contact_id = 2;
         $feedback->save();
 
         // VEDUCI -------------------------------
