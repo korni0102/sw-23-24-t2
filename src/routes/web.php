@@ -8,6 +8,7 @@ use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PDFController;
 
 
 
@@ -118,5 +119,5 @@ Route::get('/editGradePPP/edit/{id}', [UserController::class, 'editGradePPP'])->
 Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->name('changeGradePPP');
 
 
-
-
+// PDF Download
+Route::get('/generate-pdf/{contractId}', [PDFController::class, 'generatePDF']);
