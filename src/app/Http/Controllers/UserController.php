@@ -181,7 +181,16 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'hodnotenie' => 'string|max:25',
         ]);
+        $contract->closed = 1;
         $contract->update($validatedData);
         return redirect()->route('showGradeStudentPPP')->with('success', 'Hodnotenie updated successfully.');
     }
+
+    public function veduciViewContracts(){
+
+        $contracts = Contract::all();
+        return view('veduciViewContracts', ['contracts' => $contracts]);
+
+    }
+    
 }

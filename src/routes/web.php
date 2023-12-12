@@ -123,11 +123,11 @@ Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
 Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');
 
 
-//student feedback for the job
+
+Route::get('/veduciViewContracts', [UserController::class, 'veduciViewContracts'])->name('veduciViewContracts');
+
+//feedback
 Route::get('/feedback/create/{contractId}', [FeedbackController::class, 'create'])->name('feedback.create');
 Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->name('feedback.store');
-
-
-
 
 
