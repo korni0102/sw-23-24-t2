@@ -8,6 +8,7 @@ use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FeedbackController;
 
 
 
@@ -118,6 +119,15 @@ Route::get('/editGradePPP/edit/{id}', [UserController::class, 'editGradePPP'])->
 Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->name('changeGradePPP');
 
 
-
 Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
 Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');
+
+
+//student feedback for the job
+Route::get('/feedback/create/{contractId}', [FeedbackController::class, 'create'])->name('feedback.create');
+Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->name('feedback.store');
+
+
+
+
+
