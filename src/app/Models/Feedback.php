@@ -19,7 +19,6 @@ class Feedback extends Model
         'text',
         'contract_id',
         'user_id',
-        'contact_id'
     ];
 
     public function contract(): BelongsTo
@@ -31,9 +30,5 @@ class Feedback extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function contact(): BelongsTo
-    {
-        return $this->belongsTo(Contact::class, 'contact_id');
-    }
+    
 }
