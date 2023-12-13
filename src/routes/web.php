@@ -133,3 +133,8 @@ Route::get('/veduciViewContracts', [UserController::class, 'veduciViewContracts'
 Route::get('/feedback/create/{contractId}', [FeedbackController::class, 'create'])->name('feedback.create');
 Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->name('feedback.store');
 
+
+Route::get('/showContractsZastupca', [UserController::class, 'showContractsZastupca'])->name('showContractsZastupca');
+
+
+

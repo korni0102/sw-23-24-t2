@@ -124,6 +124,12 @@
                     </li>
                 @endif
 
+                @if(auth()->user()->role_id == 5)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showContractsZastupca')}}">Contracts</a>
+                    </li>
+                @endif
+
             </ul>
             <form class="d-flex" role="search">
                 <a class="user" style="text-decoration: none " href="{{ route('profile.edit') }}">
