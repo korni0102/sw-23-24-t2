@@ -4,10 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\FeedbackController;
 
 
@@ -118,6 +118,9 @@ Route::get('/showGradeStudentPPP', [UserController::class, 'showGradeStudentPPP'
 Route::get('/editGradePPP/edit/{id}', [UserController::class, 'editGradePPP'])->name('editGradePPP');
 Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->name('changeGradePPP');
 
+// PDF Download
+Route::get('/generate-pdf/{contractId}', [PDFController::class, 'generatePDF']);
+
 
 Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
 Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');
@@ -129,5 +132,4 @@ Route::get('/veduciViewContracts', [UserController::class, 'veduciViewContracts'
 //feedback
 Route::get('/feedback/create/{contractId}', [FeedbackController::class, 'create'])->name('feedback.create');
 Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->name('feedback.store');
-
 

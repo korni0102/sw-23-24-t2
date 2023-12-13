@@ -17,6 +17,8 @@ RUN chmod -R 777 ./storage
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN composer install --no-scripts --no-interaction
+
 EXPOSE 9000
 
 CMD /bin/bash -c "php-fpm"
