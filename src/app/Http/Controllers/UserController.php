@@ -152,7 +152,10 @@ class UserController extends Controller
 
     public function studentViewContracts(){
 
-        $contracts = Contract::where('user_id', auth()->user()->id)->get();
+        $contracts = Contract::where('user_id', auth()->user()->id)
+        ->where('closed', '0')
+        ->get();
+
         return view('student_view_contracts', ['contracts' => $contracts]);
 
     }
