@@ -117,6 +117,13 @@
                         <a class="nav-link" href="{{ route('showGradesStudent')}}">Moje hodnotenia</a>
                     </li>
                 @endif
+
+                @if(auth()->user()->role_id==4)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('veduciViewContracts')}}">View Contracts</a>
+                    </li>
+                @endif
+
             </ul>
             <form class="d-flex" role="search">
                 <a class="user" style="text-decoration: none " href="{{ route('profile.edit') }}">

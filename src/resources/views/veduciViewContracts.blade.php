@@ -15,6 +15,7 @@
                     <th scope="col">To</th>
                     <th scope="col">Accepted</th>
                     <th scope="col">Closed</th>
+                    <th scope="col">Hodnotenie</th>
 
                 </tr>
             </thead>
@@ -35,16 +36,17 @@
                     <td>{{ $contract->to }}</td>
                     <td>{{ $contract->accepted }}</td>
                     <td>{{ $contract->closed }}</td>
+                    @if($contract->hodnotenie)
+                        <td>{{ $contract->hodnotenie }}</td>
+                    @else
+                        <td>Student este nedostal hodnotenie</td>
+                    @endif
 
 
                 </tr>
             @endforeach
             </tbody>
         </table>
-
-        @foreach ($contracts as $contract)
-            <a href="{{ url('/generate-pdf/' . $contract->id) }}" target="_blank">Generate PDF for Contract {{ $contract->id }}</a>
-        @endforeach
 
     @endif
 @endsection

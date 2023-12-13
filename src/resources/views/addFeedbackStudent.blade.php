@@ -7,18 +7,13 @@
         <div class="card" style="width: 100%;">
             <img src="{{ asset('images/logo.jpg') }}" style="height: 250px; width: auto; padding: 5px" class="card-img-top mx-auto my-auto" alt="Logo">
                 <div class="card-body">
-                <h5 class="card-title">Pridajte Firmu</h5>
-                <form action="{{ route('saveCompany') }}" method="post">
+                <h5 class="card-title">Pridaj Feedback</h5>
+                <form action="{{ route('feedback.store', ['contractId' => $contractId]) }}" method="POST">
                     @csrf
-                    <h5 class="card-title">Nazov Firmy</h5>
-                    <input type="text" placeholder="Name" id="name" name="name" class="form-control" required>
-                    @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
                     <br>
-                    <h5 class="card-title">Adresa Firmy</h5>
-                    <input type="text" placeholder="Address" id="address" name="address" class="form-control" required>
-                    @error('address')
+                    <h5 class="card-title">Description</h5>
+                    <input type="text" placeholder="Description" id="text" name="text" class="form-control" required>
+                    @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <br>
@@ -29,3 +24,9 @@
 </div>
 @endif
 @endsection
+
+
+            
+        
+
+                
