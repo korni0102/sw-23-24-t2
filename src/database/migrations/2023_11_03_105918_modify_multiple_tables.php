@@ -88,6 +88,16 @@ return new class extends Migration
 
         });
 
+        Schema::table('zastupcas', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('company_id')->references('id')->on('companies')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+        });
+
     }
         /**
          * Reverse the migrations.
@@ -155,6 +165,12 @@ return new class extends Migration
                 $table->dropForeign(['contract_id']);
             });
             Schema::dropIfExists('grades');
+
+            Schema::table('zastupcas', function (Blueprint $table) {
+                $table->dropForeign(['user_id']);
+                $table->dropForeign(['company_id']);
+            });
+            Schema::dropIfExists('zastupcas');
 
         }
     };
