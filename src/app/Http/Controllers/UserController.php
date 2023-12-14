@@ -8,6 +8,7 @@ use App\Models\JobRequest;
 use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\StudyProgram;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -84,10 +85,26 @@ class UserController extends Controller
     }
 
 
-    public function showStudentforVeduci (){
-        $users = User::where('role_id', 2)->get();
-        return view('studentiView', ['users' => $users]);
+    public function showStudentforVeduci(Request $request)
+    {
+        $query = User::where('role_id', 2);
+    
+        if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
+            $query->where('study_program_id', $request->input('study_program_filter'));
+        }
+    
+        if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
+            $query->where('year', $request->input('year_filter'));
+        }
+    
+        $users = $query->get();
+
+        return view('studentiView', [
+            'users' => $users,
+            'studyPrograms' => StudyProgram::all(),
+        ]);
     }
+    
 
     public function showJobRequsets(){
         $jobrequests = JobRequest::all();
