@@ -15,6 +15,7 @@
                     <th scope="col">To</th>
                     <th scope="col">Accepted</th>
                     <th scope="col">Closed</th>
+                    <th scope="col">Na stiahnutie</th>
 
                 </tr>
             </thead>
@@ -35,7 +36,7 @@
                     <td>{{ $contract->to }}</td>
                     <td>{{ $contract->accepted }}</td>
                     <td>{{ $contract->closed }}</td>
-
+                    <td> <a href="{{ url('/generate-pdf/' . $contract->id) }}" target="_blank">Generate PDF for Contract {{ $contract->id }}</a></td>
 
                 </tr>
             @endforeach

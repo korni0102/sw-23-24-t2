@@ -14,6 +14,7 @@
                 <th scope="col">To</th>
                 <th scope="col">Hodnotenie</th>
                 <th scope="col">Feedback</th>
+                <th scope="col">Na stiahnutie</th>
             </tr>
             </thead>
             <tbody>
@@ -37,10 +38,14 @@
                     </button>
 
                     </td>
+                    <td> 
+            <a href="{{ url('/generate-pdf_badge/' . $contract->id) }}" target="_blank">Generate PDF for Contract {{ $contract->id }}</a>
+        </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
 
+        
     @endif
 @endsection
