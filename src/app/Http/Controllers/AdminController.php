@@ -10,6 +10,7 @@ use App\Models\Company;
 use App\Models\Job;
 use App\Models\Feedback;
 use App\Models\JobRequest;
+use App\Models\StudyProgram;
 use Illuminate\Support\Facades\DB;
 
 
@@ -33,10 +34,23 @@ class AdminController extends Controller
             ->with('success', 'Prebiehlo úspešne');
     }
 
-    public function showStudents(){
-        $users = User::where('role_id', 2)->get();
+    public function showStudents(Request $request){
+        $query = User::where('role_id', 2);
+    
+        if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
+            $query->where('study_program_id', $request->input('study_program_filter'));
+        }
+    
+        if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
+            $query->where('year', $request->input('year_filter'));
+        }
+    
+        $users = $query->get();
 
-        return view('admin_views.admin_view_students', ['users' => $users]);
+        return view('admin_views.admin_view_students', [
+            'users' => $users,
+            'studyPrograms' => StudyProgram::all(),
+        ]);
     }
 
     public function showPPPs(){
