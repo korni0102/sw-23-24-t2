@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Contract;
 use App\Models\Feedback;
 use App\Models\JobRequest;
 use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Zastupca;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -193,4 +196,25 @@ class UserController extends Controller
 
     }
     
+
+    
+
+    public function showContractsZastupca()
+    {
+        
+        $user = Auth::user();
+    
+        
+        $zastupca = $user->zastupca;
+    
+        
+        $contracts = Contract::whereHas('job', function ($query) use ($zastupca) {
+            $query->where('company_id', $zastupca->company_id);
+        })->get();
+    
+        return view('zastupcaViewContracts', ['contracts' => $contracts]);
+    }
+    
+
+        
 }
