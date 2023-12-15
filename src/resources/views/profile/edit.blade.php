@@ -45,7 +45,9 @@
                             @if($companies)
                                 <div class="form-group">
                                     <li class="list-group-item">
-                                        <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="company_id" name="company_id" required>
+                                        <label for="company_id" class="form-label">Vyberte si company (ked ste si vybrali, nemozete to zmenit)</label>
+                                        <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="company_id" name="company_id"
+                                                 {{ $attachedCompany ? 'disabled' : '' }} required>
                                             <option value="" disabled {{ is_null($attachedCompany) ? 'selected' : '' }}>Company</option>
                                             @foreach($companies as $company)
                                                 <option value="{{ $company->id }}" {{ $attachedCompany && $attachedCompany->company_id == $company->id ? 'selected' : '' }}>

@@ -136,5 +136,6 @@ Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->nam
 
 Route::get('/showContractsZastupca', [UserController::class, 'showContractsZastupca'])->name('showContractsZastupca');
 
-
+Route::get('/hodinyOdpracovane/{contractId}', [UserController::class, 'hodinyOdpracovane'])->name('hodinyOdpracovane');
+Route::get('/zastupcaAcceptContract/{contractId}/{status}', [UserController::class, 'zastupcaAcceptContract'])->name('zastupcaAcceptContract');
 

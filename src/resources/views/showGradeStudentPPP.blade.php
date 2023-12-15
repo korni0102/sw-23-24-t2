@@ -11,6 +11,7 @@
                 <th scope="col">Firma</th>
                 <th scope="col">Name</th>
                 <th scope="col">Hodnotenie</th>
+                <th scope="col">Actions</th>
 
             </tr>
             </thead>

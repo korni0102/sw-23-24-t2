@@ -24,6 +24,8 @@ class Contract extends Model
         'closed',
         'ppp_id',
         'hodnotenie',
+        'hodiny_odpracovane',
+        'hodiny_accepted',
     ];
 
     public function user(): BelongsTo

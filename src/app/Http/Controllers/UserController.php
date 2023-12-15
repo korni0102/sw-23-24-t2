@@ -195,26 +195,37 @@ class UserController extends Controller
         return view('veduciViewContracts', ['contracts' => $contracts]);
 
     }
-    
-
-    
 
     public function showContractsZastupca()
     {
-        
         $user = Auth::user();
-    
-        
         $zastupca = $user->zastupca;
-    
-        
-        $contracts = Contract::whereHas('job', function ($query) use ($zastupca) {
-            $query->where('company_id', $zastupca->company_id);
-        })->get();
-    
+        $contracts = null;
+        if(!is_null($zastupca)){
+            $contracts = Contract::whereHas('job', function ($query) use ($zastupca) {
+                $query->where('company_id', $zastupca->company_id);
+            })->get();
+        }
+
         return view('zastupcaViewContracts', ['contracts' => $contracts]);
     }
-    
 
-        
+    public function hodinyOdpracovane(int $contractId, Request $request){
+
+        DB::table('contracts')
+            ->where('id', $contractId)
+            ->update(['hodiny_odpracovane' => $request->input("hodiny_odpracovane")]);
+        return redirect()->route('studentViewContracts')->with('success', 'Hodnota updated successfully.');
+    }
+
+    public function zastupcaAcceptContract(int $contractId, bool $status){
+
+        DB::table('contracts')
+            ->where('id', $contractId)
+            ->update(['hodiny_accepted' => !$status]);
+        return redirect()->back()->with('success', 'Hodnota updated successfully.');
+    }
+
+
+
 }
