@@ -120,6 +120,7 @@ Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->n
 
 // PDF Download
 Route::get('/generate-pdf/{contractId}', [PDFController::class, 'generatePDF']);
+Route::get('/generate-pdf_badge/{contractId}', [PDFController::class, 'generatePDF_badge']);
 
 
 Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');

@@ -17,7 +17,7 @@
                     <th scope="col">Closed</th>
                     <th scope="col">Hodiny</th>
                     <th scope="col">Hodiny_accepted</th>
-
+                    <th scope="col">Na stiahnutie</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +48,7 @@
                     </td>
                     <td>{{ $contract->hodiny_accepted ? "Áno" : "Nie"}}</td>
 
+                    <td> <a href="{{ url('/generate-pdf/' . $contract->id) }}" target="_blank">Generate PDF for Contract {{ $contract->id }}</a></td>
 
                 </tr>
             @endforeach
