@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -62,5 +64,9 @@ class User extends Authenticatable
     public function studyProgram(): BelongsTo
     {
         return $this->belongsTo(StudyProgram::class, 'study_program_id');
+    }
+    public function zastupca(): HasOne
+    {
+        return $this->hasOne(Zastupca::class, 'user_id');
     }
 }
