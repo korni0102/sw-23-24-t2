@@ -26,6 +26,7 @@ return new class extends Migration
             $table->tinyInteger('ochota_sa_ucit')->unsigned();
             $table->tinyInteger('schopnost_spolupracovat')->unsigned();
             $table->tinyInteger('vyuzitie_pracovnej_doby')->unsigned();
+            $table->string('feedback', 255);
             $table->timestamps();
         });
     }

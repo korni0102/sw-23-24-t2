@@ -17,6 +17,7 @@
                 <th scope="col">Closed</th>
                 <th scope="col">Hodiny_odpracovane</th>
                 <th scope="col">Hodiny_accepted</th>
+                <th scope="col">Feedback</th>
 
             </tr>
             </thead>
@@ -44,6 +45,17 @@
                                 <button type="submit" class="btn {{ $contract->hodiny_accepted  ? "btn-success" : "btn-danger"}}" >{{ $contract->hodiny_accepted  ? "Akceptovane" : "Akceptovat"}}</button>
                             </form>
                         </td>
+
+                        <td>
+       
+            @if ($contract->grade)
+                <span>You have added feedback</span>
+            @else
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#feedbackModal" onclick="window.location='{{ route('zastupcaAddGrade', ['contractId' => $contract->id]) }}'">
+                    Give Feedback
+                </button>
+            @endif
+        </td>
 
                     </tr>
                 @endforeach

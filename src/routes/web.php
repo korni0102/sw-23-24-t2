@@ -139,3 +139,7 @@ Route::get('/showContractsZastupca', [UserController::class, 'showContractsZastu
 Route::get('/hodinyOdpracovane/{contractId}', [UserController::class, 'hodinyOdpracovane'])->name('hodinyOdpracovane');
 Route::get('/zastupcaAcceptContract/{contractId}/{status}', [UserController::class, 'zastupcaAcceptContract'])->name('zastupcaAcceptContract');
 
+
+Route::get('/zastupcaAddGrade/{contractId}', [UserController::class, 'zastupcaAddGrade'])->name('zastupcaAddGrade');
+Route::post('/zastupcaSaveGrade/{contractId}', [UserController::class, 'zastupcaSaveGrade'])->name('zastupcaSaveGrade');
+

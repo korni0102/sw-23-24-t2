@@ -17,7 +17,7 @@ class Grade extends Model
         'samostatnost_prace', 'tvorivy_pristup', 'dochvilnost',
         'dodrzovanie_etickych_zasad', 'motivacia',
         'doslednost_pri_plneni_povinnosti', 'ochota_sa_ucit',
-        'schopnost_spolupracovat', 'vyuzitie_pracovnej_doby'
+        'schopnost_spolupracovat', 'vyuzitie_pracovnej_doby', 'feedback'
     ];
 
     public function user(): BelongsTo
