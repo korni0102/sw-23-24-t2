@@ -146,8 +146,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user = new User();
-        $user->firstname = "fero";
-        $user->lastname = "nagy";
+        $user->firstname = "Fero";
+        $user->lastname = "Nagy";
         $user->email = "fero@fero.com";
         $user->address = "Nitra, Mariánska 1555";
         $user->tel = "++421914774525";
@@ -387,20 +387,6 @@ class DatabaseSeeder extends Seeder
             'role_id' => '3',
             'accepted' => true
         ]);
-
-        //feedbacks --------------------------------
-
-        $feedback = new Feedback();
-        $feedback->text = Str::random(100);
-        $feedback->contract_id = 1;
-        $feedback->user_id = 1;
-        $feedback->save();
-
-        $feedback = new Feedback();
-        $feedback->text = Str::random(100);
-        $feedback->contract_id = 2;
-        $feedback->user_id = 2;
-        $feedback->save();
 
         // VEDUCI -------------------------------
         $user = new User();

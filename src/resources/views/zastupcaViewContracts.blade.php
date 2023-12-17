@@ -50,7 +50,7 @@
 
                         <td>
 
-                            @if ($contract->grade)
+                            @if ($contract->grade()->exists())
                                 <span>Už ste pridali spätnú väzbu</span>
                             @else
                                 <button type="button" class="btn btn-info" data-toggle="modal"
@@ -59,6 +59,7 @@
                                     Napísať spätnú väzbu
                                 </button>
                             @endif
+
                         </td>
 
                     </tr>

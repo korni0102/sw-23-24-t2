@@ -1,5 +1,3 @@
-<!-- pdf_student_list.blade.php -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +13,20 @@
     </style>
 </head>
 <body>
-<h2>Student List</h2>
+<h2>Studenti</h2>
 
 <ul>
     @foreach($users as $user)
         <li>
             <strong>ID:</strong> {{ $user['id'] }}<br>
-            <strong>Firstname:</strong> {{ $user['firstname'] }}<br>
-            <strong>Lastname:</strong> {{ $user['lastname'] }}<br>
-            <strong>Email:</strong> {{ $user['email'] }}<br>
-            <strong>Address:</strong> {{ $user['address'] }}<br>
-            <strong>Tel:</strong> {{ $user['tel'] }}<br>
-            <strong>Role:</strong> {{ $user['role']['role'] }}<br>
-            <strong>Study Program:</strong> {{ $user['study_program']['name'] }}<br>
-            <strong>Year:</strong> {{ $user['year'] }}<br>
+            <strong>Krstné meno:</strong> {{ $user['firstname'] }}<br>
+            <strong>Priezvisko:</strong> {{ $user['lastname'] }}<br>
+            <strong>E-mail:</strong> {{ $user['email'] }}<br>
+            <strong>Adresa:</strong> {{ $user['address'] }}<br>
+            <strong>Telefónne cislo:</strong> {{ $user['tel'] }}<br>
+            <strong>Rola:</strong> {{ $user['role']['role'] }}<br>
+            <strong>Studijný program:</strong> {{ $user['study_program']['name'] }}<br>
+            <strong>Skolský rok:</strong> {{ $user['year'] }}<br>
         </li>
     @endforeach
 </ul>

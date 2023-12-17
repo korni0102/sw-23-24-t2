@@ -98,7 +98,7 @@ class UserController extends Controller
           $year = $request->input('year_filter');
       }
 
-      $users = $query->get();    
+      $users = $query->get();
 
       return view('studentiView', [
           'users' => $users,
@@ -125,7 +125,7 @@ class UserController extends Controller
   }
 
 public function showJobRequsets(){
-    $jobrequests = JobRequest::all();
+    $jobrequests = JobRequest::where('accepted', false)->get();
     $usersWithRoleFour = User::where('role_id', 3)->get();
     return view('veduciShowRequests', [
         'jobrequests' => $jobrequests,
@@ -314,5 +314,10 @@ public function showJobRequsetsPPP(){
             ->where('closed', true)
             ->get();
         return view('showClosedContractsPPP', ['contracts' => $contracts]);
+    }
+
+    public function showFeedbackVeduci(){
+        $grades = Grade::all();
+        return view('showFeedbackVeduci', ['grades' => $grades,]);
     }
 }
