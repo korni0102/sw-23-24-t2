@@ -138,3 +138,13 @@ Route::get('/veduciViewContracts', [UserController::class, 'veduciViewContracts'
 Route::get('/feedback/create/{contractId}', [FeedbackController::class, 'create'])->name('feedback.create');
 Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->name('feedback.store');
 
+
+Route::get('/showContractsZastupca', [UserController::class, 'showContractsZastupca'])->name('showContractsZastupca');
+
+Route::get('/hodinyOdpracovane/{contractId}', [UserController::class, 'hodinyOdpracovane'])->name('hodinyOdpracovane');
+Route::get('/zastupcaAcceptContract/{contractId}/{status}', [UserController::class, 'zastupcaAcceptContract'])->name('zastupcaAcceptContract');
+
+
+Route::get('/zastupcaAddGrade/{contractId}', [UserController::class, 'zastupcaAddGrade'])->name('zastupcaAddGrade');
+Route::post('/zastupcaSaveGrade/{contractId}', [UserController::class, 'zastupcaSaveGrade'])->name('zastupcaSaveGrade');
+

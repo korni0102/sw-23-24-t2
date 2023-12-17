@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Contract;
 use App\Models\Feedback;
 use App\Models\JobRequest;
@@ -9,11 +10,14 @@ use App\Models\RoleRequest;
 use PDF;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Zastupca;
+use App\Models\Grade;
 use App\Models\StudyProgram;
 
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -240,4 +244,82 @@ public function downoloadPDFV(Request $request)
 
     }
 
+    public function showContractsZastupca()
+    {
+        $user = Auth::user();
+        $zastupca = $user->zastupca;
+        $contracts = null;
+        if(!is_null($zastupca)){
+            $contracts = Contract::whereHas('job', function ($query) use ($zastupca) {
+                $query->where('company_id', $zastupca->company_id);
+            })->get();
+        }
+
+        return view('zastupcaViewContracts', ['contracts' => $contracts]);
+    }
+
+    public function hodinyOdpracovane(int $contractId, Request $request){
+
+        DB::table('contracts')
+            ->where('id', $contractId)
+            ->update(['hodiny_odpracovane' => $request->input("hodiny_odpracovane")]);
+        return redirect()->route('studentViewContracts')->with('success', 'Hodnota updated successfully.');
+    }
+
+    public function zastupcaAcceptContract(int $contractId, bool $status){
+
+        DB::table('contracts')
+            ->where('id', $contractId)
+            ->update(['hodiny_accepted' => !$status]);
+        return redirect()->back()->with('success', 'Hodnota updated successfully.');
+    }
+
+    
+    public function zastupcaAddGrade($contractId)
+    {
+    
+        return view('zastupcaAddGrade', ['contractId' => $contractId]);
+    }
+
+    public function zastupcaSaveGrade(Request $request, $contractId)
+{
+    $validatedData = $request->validate([
+        'vystupovanie' => 'required|integer|between:0,255',
+        'jednanie_s_klientom' => 'required|integer|between:0,255',
+        'samostatnost_prace' => 'required|integer|between:0,255',
+        'tvorivy_pristup' => 'required|integer|between:0,255',
+        'dochvilnost' => 'required|integer|between:0,255',
+        'dodrzovanie_etickych_zasad' => 'required|integer|between:0,255',
+        'motivacia' => 'required|integer|between:0,255',
+        'doslednost_pri_plneni_povinnosti' => 'required|integer|between:0,255',
+        'ochota_sa_ucit' => 'required|integer|between:0,255',
+        'schopnost_spolupracovat' => 'required|integer|between:0,255',
+        'vyuzitie_pracovnej_doby' => 'required|integer|between:0,255',
+        'feedback' => 'required|string|max:255'
+    ]);
+
+
+    $contract = Contract::findOrFail($contractId);
+
+    
+    Grade::create([
+        'user_id' => auth()->user()->id,
+        'contract_id' => $contractId,
+        'vystupovanie' => $validatedData['vystupovanie'],
+        'jednanie_s_klientom' => $validatedData['jednanie_s_klientom'],
+        'samostatnost_prace' => $validatedData['samostatnost_prace'],
+        'tvorivy_pristup' => $validatedData['tvorivy_pristup'],
+        'dochvilnost' => $validatedData['dochvilnost'],
+        'dodrzovanie_etickych_zasad' => $validatedData['dodrzovanie_etickych_zasad'],
+        'motivacia' => $validatedData['motivacia'],
+        'doslednost_pri_plneni_povinnosti' => $validatedData['doslednost_pri_plneni_povinnosti'],
+        'ochota_sa_ucit' => $validatedData['ochota_sa_ucit'],
+        'schopnost_spolupracovat' => $validatedData['schopnost_spolupracovat'],
+        'vyuzitie_pracovnej_doby' => $validatedData['vyuzitie_pracovnej_doby'],
+        'feedback' => $validatedData['feedback']
+    ]);
+
+ 
+    return redirect()->route('showContractsZastupca')->with('success', 'Grades updated successfully.');
+}
 }
