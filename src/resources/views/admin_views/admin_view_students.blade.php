@@ -23,14 +23,13 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Email</th>
-            <th scope="col">Tel</th>
+            <th scope="col">Krstné meno</th>
+            <th scope="col">Priezvisko</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Telefónne číslo</th>
             <th scope="col">Role</th>
-            <th scope="col">Studijny Program</th>
-            <th scope="col">Year</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Školský rok</th>
+            <th scope="col">Akcie</th>
         </tr>
         </thead>
         <tbody>

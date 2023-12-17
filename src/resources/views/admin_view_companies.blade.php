@@ -27,8 +27,9 @@
             <tr>
                 <th scope="col">Firma</th>
                 <th scope="col">Adresa</th>
-                <th scope="col">Contacts</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Kontakt</th>
+                <th scope="col">Akcia update</th>
+                <th scope="col">Akcia delete</th>
 
             </tr>
             </thead>
@@ -41,7 +42,7 @@
                     <td>
                         <button class="btn btn-dark" onclick="toggleContacts({{ $company->id }})"
                             {{ $company->contacts->isEmpty() ? 'disabled' : '' }}>
-                            View Contacts
+                            Zobraziť kontaktov
                         </button>
                     </td>
 
@@ -49,6 +50,8 @@
                         <form action="{{ route('companies.edit', $company->id) }}" method="GET">
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
+                    </td>
+                    <td>
                         <form action="{{ route('companies.destroy', $company->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -56,7 +59,7 @@
                         </form>
                     </td>
 
-                    </td>
+
                 </tr>
 
                 <tr id="contacts_{{ $company->id }}" style="display: none;">

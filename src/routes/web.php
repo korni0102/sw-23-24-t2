@@ -148,3 +148,7 @@ Route::get('/zastupcaAcceptContract/{contractId}/{status}', [UserController::cla
 Route::get('/zastupcaAddGrade/{contractId}', [UserController::class, 'zastupcaAddGrade'])->name('zastupcaAddGrade');
 Route::post('/zastupcaSaveGrade/{contractId}', [UserController::class, 'zastupcaSaveGrade'])->name('zastupcaSaveGrade');
 
+
+
+Route::get('/showClosedContractsPPP', [UserController::class, 'showClosedContractsPPP'])->name('showClosedContractsPPP');
+

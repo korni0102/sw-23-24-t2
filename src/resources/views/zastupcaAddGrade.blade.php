@@ -13,9 +13,9 @@
                 <br>
                 @php
                     $attributes = [
-                        'vystupovanie', 'jednanie_s_klientom', 'samostatnost_prace', 
-                        'tvorivy_pristup', 'dochvilnost', 'dodrzovanie_etickych_zasad', 
-                        'motivacia', 'doslednost_pri_plneni_povinnosti', 'ochota_sa_ucit', 
+                        'vystupovanie', 'jednanie_s_klientom', 'samostatnost_prace',
+                        'tvorivy_pristup', 'dochvilnost', 'dodrzovanie_etickych_zasad',
+                        'motivacia', 'doslednost_pri_plneni_povinnosti', 'ochota_sa_ucit',
                         'schopnost_spolupracovat', 'vyuzitie_pracovnej_doby'
                     ];
                 @endphp
@@ -33,7 +33,7 @@
                     <br>
                 @endforeach
 
-                <h5 class="card-title">Feedback</h5>
+                <h5 class="card-title">Spätná väzba</h5>
                 <textarea name="feedback" placeholder="Feedback" class="form-control" required></textarea>
                 @error('feedback')
                     <div class="alert alert-danger">{{ $message }}</div>

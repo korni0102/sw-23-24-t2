@@ -19,7 +19,7 @@
                                 <input type="text" class="form-control" id="hodnotenie" name="hodnotenie" value="{{ $contract->hodnotenie }}">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Update Hodnotenie</button>
+                            <button type="submit" class="btn btn-primary">Potvrdiť</button>
                         </form>
                     </div>
                 </div>
