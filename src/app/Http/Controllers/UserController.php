@@ -6,9 +6,11 @@ use App\Models\Contract;
 use App\Models\Feedback;
 use App\Models\JobRequest;
 use App\Models\RoleRequest;
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\StudyProgram;
+
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -85,25 +87,50 @@ class UserController extends Controller
     }
 
 
-    public function showStudentforVeduci(Request $request)
-    {
-        $query = User::where('role_id', 2);
     
-        if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
-            $query->where('study_program_id', $request->input('study_program_filter'));
-        }
-    
-        if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
-            $query->where('year', $request->input('year_filter'));
-        }
-    
-        $users = $query->get();
 
-        return view('studentiView', [
-            'users' => $users,
-            'studyPrograms' => StudyProgram::all(),
-        ]);
+    public function showStudentsforVeduci(Request $request)
+    {
+    $query = User::where('role_id', 2);
+    $studyProgramId = 0;
+    $year = '';
+
+    if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
+        $query->where('study_program_id', $request->input('study_program_filter'));
+        $studyProgramId = $request->input('study_program_filter');
     }
+
+    if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
+        $query->where('year', $request->input('year_filter'));
+        $year = $request->input('year_filter');
+    }
+
+    $users = $query->get();    
+
+    return view('studentiView', [
+        'users' => $users,
+        'studyPrograms' => StudyProgram::all(),
+        'studyProgramId' => $studyProgramId,
+        'year' => $year,
+
+    ]);
+}
+public function downoloadPDFV(Request $request)
+{
+    $users = json_decode($request->input('users'), true);
+
+    if ($request->has('export') && $request->input('export') == 'pdf') {
+        $pdf = PDF::loadView('pdf_student_list', [
+            'users' => $users,
+        ]);
+
+        return $pdf->download('student_report.pdf');
+    }
+
+
+    return redirect()->route('showStudentsVeduci');
+}
+
     
 
     public function showJobRequsets(){
@@ -212,5 +239,5 @@ class UserController extends Controller
         return view('veduciViewContracts', ['contracts' => $contracts]);
 
     }
-    
+
 }
