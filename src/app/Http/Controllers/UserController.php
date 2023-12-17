@@ -82,26 +82,18 @@ class UserController extends Controller
     }
 
 
-    public function ShowUser()
-    {
-        $usersWithPosts = User::with('posts')->get();
-
-        return view('user_view', ['usersWithPosts' => $usersWithPosts]);
-    }
-
-
     public function showStudentforVeduci(Request $request)
     {
         $query = User::where('role_id', 2);
-    
+
         if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
             $query->where('study_program_id', $request->input('study_program_filter'));
         }
-    
+
         if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
             $query->where('year', $request->input('year_filter'));
         }
-    
+
         $users = $query->get();
 
         return view('studentiView', [
@@ -109,7 +101,7 @@ class UserController extends Controller
             'studyPrograms' => StudyProgram::all(),
         ]);
     }
-    
+
 
     public function showJobRequsets(){
         $jobrequests = JobRequest::all();
@@ -192,7 +184,10 @@ class UserController extends Controller
 
 
     public function showGradeStudentPPP() {
-        $contracts = Contract::where('ppp_id', auth()->user()->id)->get();
+        $contracts = Contract::where('ppp_id', auth()->user()->id)
+            ->where('hodiny_accepted', true)
+            ->where('closed', false)
+            ->get();
         return view('showGradeStudentPPP', ['contracts' => $contracts]);
     }
 
@@ -248,53 +243,58 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Hodnota updated successfully.');
     }
 
-    
+
     public function zastupcaAddGrade($contractId)
     {
-    
+
         return view('zastupcaAddGrade', ['contractId' => $contractId]);
     }
 
     public function zastupcaSaveGrade(Request $request, $contractId)
-{
-    $validatedData = $request->validate([
-        'vystupovanie' => 'required|integer|between:0,255',
-        'jednanie_s_klientom' => 'required|integer|between:0,255',
-        'samostatnost_prace' => 'required|integer|between:0,255',
-        'tvorivy_pristup' => 'required|integer|between:0,255',
-        'dochvilnost' => 'required|integer|between:0,255',
-        'dodrzovanie_etickych_zasad' => 'required|integer|between:0,255',
-        'motivacia' => 'required|integer|between:0,255',
-        'doslednost_pri_plneni_povinnosti' => 'required|integer|between:0,255',
-        'ochota_sa_ucit' => 'required|integer|between:0,255',
-        'schopnost_spolupracovat' => 'required|integer|between:0,255',
-        'vyuzitie_pracovnej_doby' => 'required|integer|between:0,255',
-        'feedback' => 'required|string|max:255'
-    ]);
+    {
+        $validatedData = $request->validate([
+            'vystupovanie' => 'required|integer|between:0,255',
+            'jednanie_s_klientom' => 'required|integer|between:0,255',
+            'samostatnost_prace' => 'required|integer|between:0,255',
+            'tvorivy_pristup' => 'required|integer|between:0,255',
+            'dochvilnost' => 'required|integer|between:0,255',
+            'dodrzovanie_etickych_zasad' => 'required|integer|between:0,255',
+            'motivacia' => 'required|integer|between:0,255',
+            'doslednost_pri_plneni_povinnosti' => 'required|integer|between:0,255',
+            'ochota_sa_ucit' => 'required|integer|between:0,255',
+            'schopnost_spolupracovat' => 'required|integer|between:0,255',
+            'vyuzitie_pracovnej_doby' => 'required|integer|between:0,255',
+            'feedback' => 'required|string|max:255'
+        ]);
+
+        $contract = Contract::findOrFail($contractId);
+
+        Grade::create([
+            'user_id' => auth()->user()->id,
+            'contract_id' => $contractId,
+            'vystupovanie' => $validatedData['vystupovanie'],
+            'jednanie_s_klientom' => $validatedData['jednanie_s_klientom'],
+            'samostatnost_prace' => $validatedData['samostatnost_prace'],
+            'tvorivy_pristup' => $validatedData['tvorivy_pristup'],
+            'dochvilnost' => $validatedData['dochvilnost'],
+            'dodrzovanie_etickych_zasad' => $validatedData['dodrzovanie_etickych_zasad'],
+            'motivacia' => $validatedData['motivacia'],
+            'doslednost_pri_plneni_povinnosti' => $validatedData['doslednost_pri_plneni_povinnosti'],
+            'ochota_sa_ucit' => $validatedData['ochota_sa_ucit'],
+            'schopnost_spolupracovat' => $validatedData['schopnost_spolupracovat'],
+            'vyuzitie_pracovnej_doby' => $validatedData['vyuzitie_pracovnej_doby'],
+            'feedback' => $validatedData['feedback']
+        ]);
+
+        return redirect()->route('showContractsZastupca')->with('success', 'Grades updated successfully.');
+    }
+    public function showClosedContractsPPP(){
+        $contracts = Contract::where('ppp_id', auth()->user()->id)
+            ->where('closed', true)
+            ->get();
+        return view('showClosedContractsPPP', ['contracts' => $contracts]);
+    }
 
 
-    $contract = Contract::findOrFail($contractId);
-
-    
-    Grade::create([
-        'user_id' => auth()->user()->id,
-        'contract_id' => $contractId,
-        'vystupovanie' => $validatedData['vystupovanie'],
-        'jednanie_s_klientom' => $validatedData['jednanie_s_klientom'],
-        'samostatnost_prace' => $validatedData['samostatnost_prace'],
-        'tvorivy_pristup' => $validatedData['tvorivy_pristup'],
-        'dochvilnost' => $validatedData['dochvilnost'],
-        'dodrzovanie_etickych_zasad' => $validatedData['dodrzovanie_etickych_zasad'],
-        'motivacia' => $validatedData['motivacia'],
-        'doslednost_pri_plneni_povinnosti' => $validatedData['doslednost_pri_plneni_povinnosti'],
-        'ochota_sa_ucit' => $validatedData['ochota_sa_ucit'],
-        'schopnost_spolupracovat' => $validatedData['schopnost_spolupracovat'],
-        'vyuzitie_pracovnej_doby' => $validatedData['vyuzitie_pracovnej_doby'],
-        'feedback' => $validatedData['feedback']
-    ]);
-
- 
-    return redirect()->route('showContractsZastupca')->with('success', 'Grades updated successfully.');
-}
 
 }

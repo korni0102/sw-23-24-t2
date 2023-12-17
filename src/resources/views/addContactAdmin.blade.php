@@ -10,13 +10,13 @@
                     <h5 class="card-title">Pridaj kontakt</h5>
                     <form action="{{ route('saveContactAdmin') }}" method="post">
                         @csrf
-                        <h5 class="card-title">First Name</h5>
+                        <h5 class="card-title">Krstné meno</h5>
                         <input type="text" placeholder="FirstName" id="firstname" name="firstname" class="form-control" required>
                         @error('firstname')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <br>
-                        <h5 class="card-title">Last Name</h5>
+                        <h5 class="card-title">Priezvisko</h5>
                         <input type="text" placeholder="LastName" id="lastname" name="lastname" class="form-control" required>
                         @error('lastname')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -24,7 +24,7 @@
                         <br>
 
                         <br>
-                        <h5 class="card-title">Tel</h5>
+                        <h5 class="card-title">Telefónne číslo</h5>
                         <input type="text" placeholder="Tel" id="tel" name="tel" class="form-control" required>
                         @error('tel')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -32,15 +32,16 @@
                         <br>
 
                         <br>
-                        <h5 class="card-title">Email</h5>
+                        <h5 class="card-title">E-mail</h5>
                         <input type="text" placeholder="Email" id="email" name="email" class="form-control" required>
                         @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <br>
 
+                        <h5 class="card-title">Vybrať firmu</h5>
                         <select name="company_id" id="company_id" class="form-control" required>
-                            <option value="">Select a Company</option>
+                            <option value="">Vyberte si firmu</option>
                             @foreach($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                             @endforeach

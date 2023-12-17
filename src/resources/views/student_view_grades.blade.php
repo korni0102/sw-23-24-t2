@@ -6,12 +6,12 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Meno</th>
+                <th scope="col">Krstné meno</th>
                 <th scope="col">Priezvisko</th>
                 <th scope="col">Firma</th>
-                <th scope="col">Name</th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
+                <th scope="col">Názov</th>
+                <th scope="col">Od</th>
+                <th scope="col">Do</th>
                 <th scope="col">Hodnotenie</th>
                 <th scope="col">Feedback</th>
                 <th scope="col">Na stiahnutie</th>
@@ -34,11 +34,11 @@
                     <td>{{ $contract->hodnotenie }}</td>
                      <td>
                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#feedbackModal" onclick="window.location='{{ route('feedback.create', ['contractId' => $contract->id]) }}'">
-                        Give Feedback
+                        Napísať spätnú väzbu
                     </button>
 
                     </td>
-                    <td> 
+                    <td>
             <a href="{{ url('/generate-pdf_badge/' . $contract->id) }}" target="_blank">Generate PDF for Contract {{ $contract->id }}</a>
         </td>
                 </tr>
@@ -46,6 +46,6 @@
             </tbody>
         </table>
 
-        
+
     @endif
 @endsection

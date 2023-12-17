@@ -6,15 +6,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Meno</th>
+                    <th scope="col">Krstné meno</th>
                     <th scope="col">Priezvisko</th>
                     <th scope="col">Firma</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">From</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Accepted</th>
-                    <th scope="col">Closed</th>
+                    <th scope="col">Názov</th>
+                    <th scope="col">Popis</th>
+                    <th scope="col">Od</th>
+                    <th scope="col">Do</th>
+                    <th scope="col">Akceptované</th>
+                    <th scope="col">Zatvorené</th>
                     <th scope="col">Hodnotenie</th>
 
                 </tr>

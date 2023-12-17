@@ -21,7 +21,7 @@
                     <td>
                         <form action="{{ route('addJob') }}" method="get">
                             @csrf
-                            <button type="submit" class="btn btn-primary">Pridať job</button>
+                            <button type="submit" class="btn btn-primary">Pridať prácu</button>
                         </form>
                     </td>
                 </tr>
@@ -34,7 +34,7 @@
             <tr>
                 <th scope="col">Firma</th>
                 <th scope="col">Adresa</th>
-                <th scope="col">Contacts</th>
+                <th scope="col">Kontakty</th>
             </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
                     <td>
                         <button class="btn btn-dark" onclick="toggleContacts({{ $company->id }})"
                             {{ $company->contacts->isEmpty() ? 'disabled' : '' }}>
-                            View Contacts
+                            Zobraziť kontaktov
                         </button>
                     </td>
                 </tr>
@@ -54,9 +54,9 @@
                         <table class="table table-dark mb-0">
                             <thead>
                             <tr>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Tel</th>
+                                <th>Krstné meno</th>
+                                <th>Priezvisko</th>
+                                <th>Telefónne číslo</th>
                                 <th>E-mail</th>
                             </tr>
                             </thead>

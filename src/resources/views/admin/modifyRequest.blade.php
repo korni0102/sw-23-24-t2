@@ -25,11 +25,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">User name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Accepted</th>
-            <th scope="col">Admin name</th>
-            <th scope="col">Action</th>
+            <th scope="col">Meno</th>
+            <th scope="col">Rola</th>
+            <th scope="col">Akceptované</th>
+            <th scope="col">Admin meno</th>
+            <th scope="col">Akcie</th>
         </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
                           action="{{ route('admin.changeRequestStatus', [$request->id, $request->accepted]) }}">
                         @csrf
                         <button class="btn btn-dark" type="submit">
-                            Change Status
+                            Zmeniť stav
                         </button>
                     </form>
                 </td>

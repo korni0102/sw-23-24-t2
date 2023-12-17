@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit Profile</div>
+                    <div class="card-header">Editovanie profilu</div>
 
                     <div class="card-body">
                         @if(session('success'))
@@ -17,27 +17,27 @@
                             @method('put')
 
                             <div class="mb-3">
-                                <label for="firstname" class="form-label">First Name:</label>
+                                <label for="firstname" class="form-label">Krtsné meno:</label>
                                 <input type="text" class="form-control" id="firstname" name="firstname" value="{{ auth()->user()->firstname }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="lastname" class="form-label">Last Name:</label>
+                                <label for="lastname" class="form-label">Priezvisko:</label>
                                 <input type="text" class="form-control" id="lastname" name="lastname" value="{{ auth()->user()->lastname }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="address" class="form-label">Address:</label>
+                                <label for="address" class="form-label">Adresa:</label>
                                 <input type="text" class="form-control" id="address" name="address" value="{{ auth()->user()->address }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email:</label>
+                                <label for="email" class="form-label">E-mail:</label>
                                 <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="year" class="form-label">Year:</label>
+                                <label for="year" class="form-label">Školský rok:</label>
                                 <input type="text" class="form-control" id="year" name="year" value="{{ auth()->user()->year }}" required>
                             </div>
 
@@ -64,7 +64,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
 
-                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <button type="submit" class="btn btn-primary">Potvrdiť</button>
                         </form>
                     </div>
                 </div>

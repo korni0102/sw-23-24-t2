@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">User Information</div>
+                    <div class="card-header">Informácie o profile</div>
 
                     <div class="card-body">
                         @if($user)
@@ -26,21 +26,19 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="address" class="form-label">Address:</label>
+                                    <label for="address" class="form-label">Adresa:</label>
                                     <input type="text" class="form-control" id="address" value="{{ $user->address }}" readonly>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="year" class="form-label">Rok:</label>
+                                    <label for="year" class="form-label">Školský rok:</label>
                                     <input type="text" class="form-control" id="year" value="{{ $user->year }}" readonly>
                                 </div>
 
-                                <!-- Add other user information fields as needed -->
-
-                                <a href="{{ route('edit.profile') }}" class="btn btn-primary">Edit Profile</a>
+                                <a href="{{ route('edit.profile') }}" class="btn btn-primary">Potvrdiť</a>
                             </form>
                         @else
-                            <p>No user information available.</p>
+                            <p>Nemáme informácie.</p>
                         @endif
                     </div>
                 </div>
