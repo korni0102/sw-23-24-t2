@@ -71,8 +71,11 @@ Route::get('/showPPPs', [AdminController::class, 'showPPPs'])->name('showPPPs');
 Route::get('/showVeducis', [AdminController::class, 'showVeducis'])->name('showVeducis');
 Route::get('/showzastupcas', [AdminController::class, 'showzastupcas'])->name('showzastupcas');
 
+//PDF
+Route::get('/downoloadPDF', [AdminController::class, 'downoloadPDF'])->name('downoloadPDF');
+Route::get('/downoloadPDFV', [UserController::class, 'downoloadPDFV'])->name('downoloadPDFV');
 //veduci
-Route::get('/showStudentsVeduci', [UserController::class, 'showStudentforVeduci'])->name('showStudentsVeduci');
+Route::get('/showStudentsVeduci', [UserController::class, 'showStudentsforVeduci'])->name('showStudentsVeduci');
 Route::get('/showJobRequsets', [UserController::class, 'showJobRequsets'])->name('showJobRequsets');
 Route::get('/JobRequestJoin', [UserController::class, 'requestAjax'])->name('requestAjax');
 
@@ -121,7 +124,8 @@ Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->n
 // PDF Download
 Route::get('/generate-pdf/{contractId}', [PDFController::class, 'generatePDF']);
 Route::get('/generate-pdf_badge/{contractId}', [PDFController::class, 'generatePDF_badge']);
-
+Route::get('/generateFiltered-pdf', [UserController::class, 'generatePDF2'])->name('generateFiltered-PDF');
+                                                                                 
 
 Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
 Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');

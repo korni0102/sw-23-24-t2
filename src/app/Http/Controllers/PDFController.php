@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Contract;
 use PDF;
 
+
+
 class PDFController extends Controller
 {
     public function generatePDF(Request $request, $contractId)
@@ -35,4 +37,6 @@ class PDFController extends Controller
         // If you want to download the PDF
         return $pdf->download($filename);
     }
+
+
 }

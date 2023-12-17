@@ -8,16 +8,16 @@
                 <label for="study_program_filter">Filter by Study Program:</label>
                 <select name="study_program_filter" id="study_program_filter">
                 <option value="">Všetky programy</option>
-
                     @foreach($studyPrograms as $program)
-                        <option value="{{ $program->id }}">{{ $program->name }}</option>
+                    <option value="{{ $program->id }}" {{ $studyProgramId == $program->id ? 'selected="selected"' : '' }}>{{ $program->name }}</option>
                     @endforeach
                 </select>
 
                 <label for="year_filter">Filter by Year:</label>
-                <input type="text" name="year_filter" id="year_filter" placeholder="Enter year">
+                <input type="text" name="year_filter" id="year_filter" placeholder="Enter year" value={{ $year }}>
 
                 <button type="submit">Apply Filters</button>
+                
             </form>
         </div>
     <table class="table">
@@ -45,6 +45,7 @@
                 <td>{{ $user->year }}</td>
                 <td style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
                     <form action="{{ route('users.edit', $user->id) }}" method="GET">
+                        @csrf
                         <button type="submit" class="btn btn-primary">Update</button>
                         <input type="hidden" name="redirect_to" value="showStudents">
                     </form>
@@ -56,8 +57,15 @@
                 </td>
             </tr>
         @endforeach
-
+            <tr>
+                <form method='get' action='{{ route("downoloadPDF") }}'>
+                @csrf
+                    <input type='hidden' value='{{ json_encode($users) }}' name='users'>
+                    <button type="submit" name="export" value="pdf">Export to PDF</button>
+                </form>
+            </tr>
         </tbody>
     </table>
+
 @endif
 @endsection

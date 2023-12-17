@@ -55,9 +55,7 @@
             </tbody>
         </table>
 
-        @foreach ($contracts as $contract)
-            <a href="{{ url('/generate-pdf/' . $contract->id) }}" target="_blank">Generate PDF for Contract {{ $contract->id }}</a>
-        @endforeach
+       
 
     @endif
 @endsection

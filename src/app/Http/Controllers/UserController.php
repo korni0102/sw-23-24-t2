@@ -7,13 +7,12 @@ use App\Models\Contract;
 use App\Models\Feedback;
 use App\Models\JobRequest;
 use App\Models\RoleRequest;
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Zastupca;
 use App\Models\Grade;
 use App\Models\StudyProgram;
-
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -82,43 +81,65 @@ class UserController extends Controller
     }
 
 
-    public function showStudentforVeduci(Request $request)
-    {
-        $query = User::where('role_id', 2);
 
-        if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
-            $query->where('study_program_id', $request->input('study_program_filter'));
-        }
+  public function showStudentsforVeduci(Request $request)
+  {
+      $query = User::where('role_id', 2);
+      $studyProgramId = 0;
+      $year = '';
 
-        if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
-            $query->where('year', $request->input('year_filter'));
-        }
+      if ($request->has('study_program_filter') && ($request->input('study_program_filter')!="")) {
+          $query->where('study_program_id', $request->input('study_program_filter'));
+          $studyProgramId = $request->input('study_program_filter');
+      }
 
-        $users = $query->get();
+      if ($request->has('year_filter') && ($request->input('year_filter')!=null)) {
+          $query->where('year', $request->input('year_filter'));
+          $year = $request->input('year_filter');
+      }
 
-        return view('studentiView', [
-            'users' => $users,
-            'studyPrograms' => StudyProgram::all(),
-        ]);
-    }
+      $users = $query->get();    
+
+      return view('studentiView', [
+          'users' => $users,
+          'studyPrograms' => StudyProgram::all(),
+          'studyProgramId' => $studyProgramId,
+          'year' => $year,
+
+      ]);
+  }
+
+  public function downoloadPDFV(Request $request)
+  {
+      $users = json_decode($request->input('users'), true);
+
+      if ($request->has('export') && $request->input('export') == 'pdf') {
+          $pdf = PDF::loadView('pdf_student_list', [
+              'users' => $users,
+          ]);
+
+          return $pdf->download('student_report.pdf');
+      }
+
+      return redirect()->route('showStudentsVeduci');
+  }
+
+public function showJobRequsets(){
+    $jobrequests = JobRequest::all();
+    $usersWithRoleFour = User::where('role_id', 3)->get();
+    return view('veduciShowRequests', [
+        'jobrequests' => $jobrequests,
+        'usersWithRoleFour' => $usersWithRoleFour
+    ]);
+}
+
+public function showJobRequsetsPPP(){
+
+    $jobrequests = JobRequest::where('ppp_id', auth()->user()->id)->where('accepted', false)->get();
 
 
-    public function showJobRequsets(){
-        $jobrequests = JobRequest::all();
-        $usersWithRoleFour = User::where('role_id', 3)->get();
-        return view('veduciShowRequests', [
-            'jobrequests' => $jobrequests,
-            'usersWithRoleFour' => $usersWithRoleFour
-        ]);
-    }
-
-    public function showJobRequsetsPPP(){
-
-        $jobrequests = JobRequest::where('ppp_id', auth()->user()->id)->where('accepted', false)->get();
-
-
-        return view('pppShowRequests', ['jobrequests' => $jobrequests,]);
-    }
+    return view('pppShowRequests', ['jobrequests' => $jobrequests,]);
+}
 
     public function requestAjax(Request $request){
 
@@ -294,7 +315,4 @@ class UserController extends Controller
             ->get();
         return view('showClosedContractsPPP', ['contracts' => $contracts]);
     }
-
-
-
 }
