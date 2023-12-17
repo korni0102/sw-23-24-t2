@@ -125,7 +125,7 @@ Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->n
 Route::get('/generate-pdf/{contractId}', [PDFController::class, 'generatePDF']);
 Route::get('/generate-pdf_badge/{contractId}', [PDFController::class, 'generatePDF_badge']);
 Route::get('/generateFiltered-pdf', [UserController::class, 'generatePDF2'])->name('generateFiltered-PDF');
-                                                                                 
+
 
 Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
 Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');
@@ -151,4 +151,6 @@ Route::post('/zastupcaSaveGrade/{contractId}', [UserController::class, 'zastupca
 
 
 Route::get('/showClosedContractsPPP', [UserController::class, 'showClosedContractsPPP'])->name('showClosedContractsPPP');
+
+Route::get('/showFeedbackVeduci', [UserController::class, 'showFeedbackVeduci'])->name('showFeedbackVeduci');
 

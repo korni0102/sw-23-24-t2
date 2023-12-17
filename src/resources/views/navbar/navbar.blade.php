@@ -138,6 +138,12 @@
                     </li>
                 @endif
 
+                @if(auth()->user()->role_id == 4)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showFeedbackVeduci')}}">Zobraziť spätnú väzbu od zástupcov</a>
+                    </li>
+                @endif
+
             </ul>
             <form class="d-flex" role="search">
                 <a class="user" style="text-decoration: none " href="{{ route('profile.edit') }}">
