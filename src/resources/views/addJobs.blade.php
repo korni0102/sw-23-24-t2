@@ -10,26 +10,25 @@
                 <h5 class="card-title">Pridaj Job</h5>
                 <form action="{{ route('saveJob') }}" method="post">
                     @csrf
-                    <h5 class="card-title">Name</h5>
+                    <h5 class="card-title">Názov</h5>
                     <input type="text" placeholder="Name" id="name" name="name" class="form-control" required>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <br>
-                    <h5 class="card-title">Description</h5>
+                    <h5 class="card-title">Popis</h5>
                     <input type="text" placeholder="Description" id="description" name="description" class="form-control" required>
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <br>
-                    
 
                     <select name="job_type" id="job_type" class="form-control" required>
-                        <option value="">Select Job Type</option>
-                        <option value="parttime">Part-Time</option>
-                        <option value="fulltime">Full-Time</option>
-                        <option value="paid">Paid</option>
-                        <option value="unpaid">Unpaid</option>
+                        <option value="">Vyberte si typ práce</option>
+                        <option value="parttime">Študentská brigáda</option>
+                        <option value="fulltime">Plný úväzok</option>
+                        <option value="paid">Platená brigáda</option>
+                        <option value="unpaid">Neplatená brigáda</option>
                         <option value="freelancer">Freelancer</option>
                     </select>
                     @error('job_type')
@@ -38,13 +37,13 @@
 
 
                     <br>
-                    
+
                     <select name="contact_id" id="contact_id" class="form-control" required>
                     <option value="">Contact</option>
                     @foreach($contacts as $contact)
                     <option value="{{ $contact->id }}">{{ $contact->firstname }} {{ $contact->lastname }}</option>
 
-                    
+
                     </option>
                     @endforeach
                     </select>
@@ -54,7 +53,7 @@
                     <br>
 
                     <br>
-                    
+
                     <select name="company_id" id="company_id" class="form-control" required>
                     <option value="">Company</option>
                     @foreach($companies as $company)
@@ -66,7 +65,7 @@
                     @enderror
                     <br>
 
-                    
+
                     <button type="submit" class="btn btn-warning" style="text-align: center">Potvrdiť</button>
                 </form>
             </div>

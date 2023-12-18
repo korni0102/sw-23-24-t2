@@ -26,5 +26,10 @@ class Company extends Model
     {
         return $this->hasMany(Job::class, 'company_id');
     }
+
+    public function zastupcas(): HasMany
+    {
+        return $this->hasMany(Zastupca::class, 'company_id');
+    }
 }
 

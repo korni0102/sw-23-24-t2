@@ -6,12 +6,12 @@
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Study Program</th>
+                <th scope="col">Krstné meno</th>
+                <th scope="col">Priezvisko</th>
+                <th scope="col">Študijný program</th>
                 <th scope="col">Firma</th>
-                <th scope="col">Name</th>
-                <th scope="col">Priradit PPP</th>
+                <th scope="col">Názov</th>
+                <th scope="col">Priradit povereného pracovníka pracoviska</th>
             </tr>
             </thead>
             <tbody>
@@ -25,8 +25,6 @@
 
                     <td>{{ $jobrequest->job->company->name }}</td>
                     <td>{{ $jobrequest->job->name }}</td>
-                    <td>{{ $jobrequest->address }}</td>
-                    <td>{{ $jobrequest->tel }}</td>
                     <td>
                         <li class="list-group-item">
                             <select style="border-radius: 0px" class="form-select form-select-lg mb-3" id="ppp_id" name="ppp_id" onchange="ajax({{$jobrequest->id}}, this)">

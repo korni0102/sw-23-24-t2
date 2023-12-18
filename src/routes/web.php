@@ -4,10 +4,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JobController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\FeedbackController;
 
 
 
@@ -70,8 +71,11 @@ Route::get('/showPPPs', [AdminController::class, 'showPPPs'])->name('showPPPs');
 Route::get('/showVeducis', [AdminController::class, 'showVeducis'])->name('showVeducis');
 Route::get('/showzastupcas', [AdminController::class, 'showzastupcas'])->name('showzastupcas');
 
+//PDF
+Route::get('/downoloadPDF', [AdminController::class, 'downoloadPDF'])->name('downoloadPDF');
+Route::get('/downoloadPDFV', [UserController::class, 'downoloadPDFV'])->name('downoloadPDFV');
 //veduci
-Route::get('/showStudentsVeduci', [UserController::class, 'showStudentforVeduci'])->name('showStudentsVeduci');
+Route::get('/showStudentsVeduci', [UserController::class, 'showStudentsforVeduci'])->name('showStudentsVeduci');
 Route::get('/showJobRequsets', [UserController::class, 'showJobRequsets'])->name('showJobRequsets');
 Route::get('/JobRequestJoin', [UserController::class, 'requestAjax'])->name('requestAjax');
 
@@ -117,10 +121,36 @@ Route::get('/showGradeStudentPPP', [UserController::class, 'showGradeStudentPPP'
 Route::get('/editGradePPP/edit/{id}', [UserController::class, 'editGradePPP'])->name('editGradePPP');
 Route::put('/changeGradePPP/{id}', [UserController::class, 'changeGradePPP'])->name('changeGradePPP');
 
+// PDF Download
+Route::get('/generate-pdf/{contractId}', [PDFController::class, 'generatePDF']);
+Route::get('/generate-pdf_badge/{contractId}', [PDFController::class, 'generatePDF_badge']);
+Route::get('/generateFiltered-pdf', [UserController::class, 'generatePDF2'])->name('generateFiltered-PDF');
 
 
 Route::get('/addJob', [CompanyController::class, 'addJob'])->name('addJob');
 Route::post('/saveJob', [CompanyController::class, 'saveJob'])->name('saveJob');
 
 
+
 Route::get('/veduciViewContracts', [UserController::class, 'veduciViewContracts'])->name('veduciViewContracts');
+
+//feedback
+Route::get('/feedback/create/{contractId}', [FeedbackController::class, 'create'])->name('feedback.create');
+Route::post('/feedback/{contractId}', [FeedbackController::class, 'store'])->name('feedback.store');
+
+
+Route::get('/showContractsZastupca', [UserController::class, 'showContractsZastupca'])->name('showContractsZastupca');
+
+Route::get('/hodinyOdpracovane/{contractId}', [UserController::class, 'hodinyOdpracovane'])->name('hodinyOdpracovane');
+Route::get('/zastupcaAcceptContract/{contractId}/{status}', [UserController::class, 'zastupcaAcceptContract'])->name('zastupcaAcceptContract');
+
+
+Route::get('/zastupcaAddGrade/{contractId}', [UserController::class, 'zastupcaAddGrade'])->name('zastupcaAddGrade');
+Route::post('/zastupcaSaveGrade/{contractId}', [UserController::class, 'zastupcaSaveGrade'])->name('zastupcaSaveGrade');
+
+
+
+Route::get('/showClosedContractsPPP', [UserController::class, 'showClosedContractsPPP'])->name('showClosedContractsPPP');
+
+Route::get('/showFeedbackVeduci', [UserController::class, 'showFeedbackVeduci'])->name('showFeedbackVeduci');
+

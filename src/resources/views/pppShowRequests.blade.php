@@ -6,12 +6,13 @@
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Study Program</th>
+                <th scope="col">Krstné meno</th>
+                <th scope="col">Priezvisko</th>
+                <th scope="col">Študijný program</th>
                 <th scope="col">Firma</th>
-                <th scope="col">Name</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Názov</th>
+                <th scope="col">Akcia Akceptovať</th>
+                <th scope="col">Akcia Vymazať</th>
 
             </tr>
             </thead>
@@ -23,17 +24,15 @@
                     <td>{{ $jobrequest->user->firstname }}</td>
                     <td>{{ $jobrequest->user->lastname }}</td>
                     <td>{{ $jobrequest->user->studyProgram->name }}</td>
-
                     <td>{{ $jobrequest->job->company->name }}</td>
                     <td>{{ $jobrequest->job->name }}</td>
-                    <td>{{ $jobrequest->address }}</td>
-                    <td>{{ $jobrequest->tel }}</td>
                     <td>
                         <form action="{{ route('job-requests.accept', $jobrequest->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-success">Accept</button>
                         </form>
-
+                    </td>
+                    <td>
                         <form action="{{ route('jobRequestPPP.destroy', $jobrequest->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

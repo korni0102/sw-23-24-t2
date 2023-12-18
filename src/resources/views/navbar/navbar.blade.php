@@ -11,6 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -25,31 +27,37 @@
 
                 @if(auth()->user()->role_id==1)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Role requests</a>
+                        <a class="nav-link" href="{{ route('admin.modifyRoleRequest')}}">Žiadosti o rolu</a>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id==1 || auth()->user()->role_id==3)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin_view_companies')}}">Companies</a>
+                        <a class="nav-link" href="{{ route('admin_view_companies')}}">Firmy</a>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id == 2)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('viewCompaniesStudents')}}">Companies</a>
+                        <a class="nav-link" href="{{ route('viewCompaniesStudents')}}">Firmy</a>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id == 4)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('viewCompaniesVeduci')}}">Companies</a>
+                        <a class="nav-link" href="{{ route('viewCompaniesVeduci')}}">Firmy</a>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id == 1)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jobs')}}">Jobs</a>
+                        <a class="nav-link" href="{{ route('jobs')}}">Práce</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id==3)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showJobRequsetsPPP')}}">Žiadosti o prácu</a>
                     </li>
                 @endif
 
@@ -61,54 +69,50 @@
 
                 @if(auth()->user()->role_id == 2)
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Job Types
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Typy prác
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('showPartTime') }}">Studentska brigada</a>
-                        <a class="dropdown-item" href="{{ route('showPaid') }}">Platena brigada</a>
-                        <a class="dropdown-item" href="{{ route('showUnpaid') }}">Neplatena brigada</a>
-                        <a class="dropdown-item" href="{{ route('showFullTime') }}">Fulltime</a>
-                        <a class="dropdown-item" href="{{ route('showFreelancer') }}">Freelancer</a>
+                            <a class="dropdown-item" href="{{ route('showPartTime') }}">Študentská brigáda</a>
+                            <a class="dropdown-item" href="{{ route('showFullTime') }}">Plný úväzok</a>
+                            <a class="dropdown-item" href="{{ route('showPaid') }}">Platená brigáda</a>
+                            <a class="dropdown-item" href="{{ route('showUnpaid') }}">Neplatená brigáda</a>
+                            <a class="dropdown-item" href="{{ route('showFreelancer') }}">Freelancer</a>
                         </div>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id == 1)
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pouzivatelia
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pouzivatelia
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('showStudents') }}">Student</a>
-                        <a class="dropdown-item" href="{{ route('showPPPs') }}">Povereny pracovnik pracoviska</a>
-                        <a class="dropdown-item" href="{{ route('showVeducis') }}">Veduci pracoviska</a>
-                        <a class="dropdown-item" href="{{ route('showzastupcas') }}">Zastupca firmy</a>
+                            <a class="dropdown-item" href="{{ route('showStudents') }}">Študent</a>
+                            <a class="dropdown-item" href="{{ route('showPPPs') }}">Poverený pracovník pracoviska</a>
+                            <a class="dropdown-item" href="{{ route('showVeducis') }}">Vedúci pracoviska</a>
+                            <a class="dropdown-item" href="{{ route('showzastupcas') }}">Zástupca firmy</a>
                         </div>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id==2)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('studentViewContracts')}}">My contracts</a>
+                        <a class="nav-link" href="{{ route('studentViewContracts')}}">Moje zmluvy</a>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id==4)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('showStudentsVeduci')}}">Studenti</a>
+                        <a class="nav-link" href="{{ route('showStudentsVeduci')}}">Študenti</a>
                     </li>
                 @endif
 
                 @if(auth()->user()->role_id==4)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('showJobRequsets')}}">JobRequests</a>
-                    </li>
-                @endif
-
-                @if(auth()->user()->role_id==3)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('showJobRequsetsPPP')}}">JobRequests</a>
+                        <a class="nav-link" href="{{ route('showJobRequsets')}}">Žiadosti o prácu</a>
                     </li>
                 @endif
 
@@ -120,7 +124,25 @@
 
                 @if(auth()->user()->role_id==4)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('veduciViewContracts')}}">View Contracts</a>
+                        <a class="nav-link" href="{{ route('veduciViewContracts')}}">Zobraziť zmluvy</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id == 5)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showContractsZastupca')}}">Zobraziť zmluvy</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id == 3  || auth()->user()->role_id==1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showClosedContractsPPP')}}">Zobraziť archivované zmluvy</a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->role_id == 4)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showFeedbackVeduci')}}">Zobraziť spätnú väzbu od zástupcov</a>
                     </li>
                 @endif
 
@@ -151,7 +173,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 {{--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

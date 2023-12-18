@@ -29,7 +29,7 @@
                     @if($contract->hodnotenie)
                         <td>{{ $contract->hodnotenie }}</td>
                     @else
-                        <td>Nedali ste ešte hodnotenie</td>
+                        <td>Nedali ste eÅ¡te hodnotenie</td>
                     @endif
                     <td>
                         <form action="{{ route('editGradePPP', $contract->id) }}" method="GET">
@@ -41,6 +41,7 @@
             @endforeach
             </tbody>
         </table>
+
 
     @endif
 @endsection

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->tinyInteger('closed')->default(false);
             $table->unsignedBigInteger('ppp_id')->nullable();
             $table->string('hodnotenie', 25)->nullable();
-
+            $table->integer('hodiny_odpracovane')->default(0);
+            $table->tinyInteger('hodiny_accepted')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
