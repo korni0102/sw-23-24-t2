@@ -11,6 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -132,7 +134,7 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->role_id == 3)
+                @if(auth()->user()->role_id == 3  || auth()->user()->role_id==1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('showClosedContractsPPP')}}">Zobraziť archivované zmluvy</a>
                     </li>
